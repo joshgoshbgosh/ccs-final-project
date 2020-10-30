@@ -48,9 +48,11 @@ INSTALLED_APPS = [
 
     'frontend.apps.FrontendConfig',
     'accounts.apps.AccountsConfig',
+
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
