@@ -41,7 +41,7 @@ async handleLogIn(event){
 
   const data = await response.json();
   if(data.key) {
-    console.log('firing');
+
     Cookies.set('Authorization', `Token ${data.key}`);
 
   }
@@ -62,7 +62,7 @@ render() {
           <label className="form-password1"></label>
           <input type="text" placeholder="Enter Password..." name="password" value={this.state.password} onChange ={this.handleChange} />
         </div>
-        <button type="submit"className="sub btn btn-dark"onClick={()=> this.props.handleSelection('login')}>Submit</button>
+        <button type="submit"className="sub btn btn-dark">Submit</button>
       </form>
     </container>
   </React.Fragment>

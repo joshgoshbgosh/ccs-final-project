@@ -56,22 +56,22 @@ handleChange (event){
         return(
           <React.Fragment>
 
-          <form className="col-12 col-md-6 mb-5" onSubmit={(event) => {this.addUser(event, this.state); this.setState({username:'', email:'', password1:'', password2: ''})}>
+          <form className="col-12 col-md-6 mb-5" onSubmit={(event) => {this.addUser(event, this.state); this.setState({username:'', email:'', password1:'', password2: ''})}}>
             <div className="form-group">
               <label className="form-userName">CREATE ACCOUNT</label>
-              <input type="text" placeholder="Enter Username..."name="username" Value={this.state.userName} onChange ={this.handleChange}  />
+              <input type="text" placeholder="Enter Username..."name="username" value={this.state.userName} onChange ={this.handleChange}  />
             </div>
             <div className="form-group">
                 <label className="form-email"></label>
-                <input type="text" placeholder="Enter Email..."name="email" Value={this.state.email} onChange ={this.handleChange} />
+                <input type="text" placeholder="Enter Email..."name="email" value={this.state.email} onChange ={this.handleChange} />
             </div>
             <div className="form-group">
                 <label className="form-password1"></label>
-                <input type="text" placeholder="Enter Password..." name="password1" Value={this.state.password1} onChange ={this.handleChange} />
+                <input type="text" placeholder="Enter Password..." name="password1" value={this.state.password1} onChange ={this.handleChange} />
             </div>
             <div className="form-group">
                 <label className="form-password2"></label>
-                <input type="text" placeholder="Re-enter Password..." name="password2" defaultValue={this.state.title} onChange ={this.handleChange} />
+                <input type="text" placeholder="Re-enter Password..." name="password2" value={this.state.title} onChange ={this.handleChange} />
             </div>
               <button type="submit"className="sub btn btn-dark">Submit</button>
           </form>
