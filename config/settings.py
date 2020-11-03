@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
-
-
     'frontend.apps.FrontendConfig',
     'accounts.apps.AccountsConfig',
 
@@ -56,6 +54,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    'patients.apps.PatientsConfig',
 
 ]
 REST_FRAMEWORK = {

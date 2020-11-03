@@ -41,9 +41,7 @@ async handleLogIn(event){
 
   const data = await response.json();
   if(data.key) {
-
     Cookies.set('Authorization', `Token ${data.key}`);
-
   }
 };
 
@@ -52,7 +50,7 @@ render() {
   return (
     <React.Fragment>
 
-    <container>
+    <div>
       <form className="col-12 col-md-6 mb-5" onSubmit={this.handleLogIn}>
         <div className="form-group">
           <label className="form-userName">LOG IN</label>
@@ -64,7 +62,7 @@ render() {
         </div>
         <button type="submit"className="sub btn btn-dark">Submit</button>
       </form>
-    </container>
+    </div>
   </React.Fragment>
 
                         )

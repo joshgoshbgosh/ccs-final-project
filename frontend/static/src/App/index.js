@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Registration from'./Registration/index.js';
-import Map from './Map/MyGoogleMap.js';
-import './App.css';
+
 import Cookies from 'js-cookie';
-import Login from './Login/index.js';
-import Menu from './Menu/index.js';
+
+
+// import Menu from './Menu/index.js';
+// import Map from './Map/MyGoogleMap.js';
+
 
 // import your components
 // load each one individually in the App component below
@@ -15,11 +17,10 @@ import Menu from './Menu/index.js';
 
  // our location object from earlier
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <Map/>
-
+      {props.children}
     </div>
   );
 }

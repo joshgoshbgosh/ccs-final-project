@@ -23,7 +23,6 @@ this.handleLogOut = this.handleLogOut.bind(this);
       const response = await fetch('/api/v1/rest-auth/logout/', {
          method: 'POST',
          headers: {
-           'Content-Type':'application/json',
             'X-CSRFToken': csrftoken,
           },
 
@@ -31,9 +30,7 @@ this.handleLogOut = this.handleLogOut.bind(this);
 
       const data = await response.json();
       if(data.detail) {
-
         Cookies.remove('Authorization');
-
       }
     };
 
