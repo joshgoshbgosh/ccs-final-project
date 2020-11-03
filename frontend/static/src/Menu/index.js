@@ -40,11 +40,18 @@ this.handleLogOut = this.handleLogOut.bind(this);
       return (
         <React.Fragment>
           <nav>
+          <div>
           <button>ABOUT</button>
-          <button></button>
+          </div>
+          <div>
+          <button>CREATE PATIENT</button>
+          </div>
+          <div>
           <button>FIND PHARMACY</button>
+          </div>
+          <div>
           <button className="log-out" onClick={this.handleLogOut}>LOG OUT</button>
-
+          </div>
 
 
           </nav>

@@ -20,15 +20,13 @@ class Patient extends Component {
       primary_doctor_telephone_number:'',
       language:'',
       bed_patient:'',
-      walking_devices:'',
+      walking_devices: ('Wheel_Chair', 'Walker', 'Cane'),
       able_to_walk_alone:'',
       surgeries:'',
-      // upload:''
-
-
-
+      image: null,
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleUpload = this.handleUpload.bind(this)
   }
 
 
@@ -36,27 +34,42 @@ class Patient extends Component {
     this.setState({[event.target.name]: event.target.value});
 }
 
+  handleUpload (event){
+    this.setState({[event.target.name]: event.target.files[0]});
+  }
+
+
 
   addPatient(event){
     event.preventDefault();
 
     const csrftoken = Cookies.get('csrftoken');
 
+    const formData = new FormData();
+    const data = Object.keys(this.state);
+    // console.log('data', data);
+    data.forEach(item => formData.append(item, this.state[item]));
+
     fetch('/api/v1/patients/', {
        method: 'POST',
        headers: {
-         'Content-Type':'application/json',
          'X-CSRFToken': csrftoken,
        },
-       body: JSON.stringify(this.state)
+       body: formData
     });
 };
 render() {
     return (
       <React.Fragment>
         <form className="news-form" onSubmit={(event) => {this.addPatient(event, this.state); this.setState({first_name:'', last_name:'',
-      date_of_birth:'', weight:'', height:'', gender:('male','female'), food_allergies:'', medication_allergies:'', primary_doctor:'',
-    primary_doctor_telephone_number:'', language:'', bed_patient:'', walking_devices:'', able_to_walk_alone:'', surgeries:''})}}>
+      date_of_birth:'', weight:'', height:'', gender:('Male','Female'), food_allergies:'', medication_allergies:'', primary_doctor:'',
+    primary_doctor_telephone_number:'', language:'', bed_patient:'', walking_devices:('Wheel_Chair', 'Walker', 'Cane'), able_to_walk_alone:'', surgeries:''})}}>
+
+        <div>
+          <label htmlFor='image'className="avatar">Profile Image</label>
+          <input type="file" name="image" onChange={this.handleUpload}/>
+          <img src={this.state.upload}/>
+        </div>
           <div className="form-group">
             <label htmlFor='first_name'className="first">First Name</label>
             <input type="text" id='first_name' name="first_name" value={this.state.first_name} onChange={this.handleChange} />
@@ -65,6 +78,7 @@ render() {
             <label htmlFor='last_name'className="last">Last Name</label>
             <input type="text" id='last_name' name="last_name" value={this.state.last_name} onChange={this.handleChange} />
           </div>
+
           <div className="form-group">
             <label htmlFor='date_of_birth'className="bday">Date Of Birth</label>
             <input type="date" id='date_of_birth' name="date_of_birth" value={this.state.date_of_birth} onChange={this.handleChange} />
@@ -109,13 +123,14 @@ render() {
             <input type="checkbox" className="bed_patient" id="bed_patient" name="bed_patient" value={this.state.bed_patient} onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor='walking_devices'className="walking_devices">Walking Devices</label>
-            <input type="text" id='walking_devices' name="walking_devices" value={this.state.walking_devices} onChange={this.handleChange} />
+            <label htmlFor='walking_devices'className="walking_devices">Gender</label>
+              <select className="walk_device" id="walking_devices" name="walking_devices" value={this.state.walking_devices} onChange={this.handleChange}>
+                <option value="Wheel_Chair">Wheel Chair</option>
+                <option value="Walker">Walker</option>
+                <option value="Cane">Cane</option>
+              </select>
           </div>
-          <div className="form-group">
-            <label htmlFor='able_to_walk_alone'className="able_to_walk_alone">Able To Walk Alone</label>
-            <input type="checkbox"className="able_to_walk_alone" id="able_to_walk_alone" name="able_to_walk_alone" value={this.state.able_to_walk_alone} onChange={this.handleChange}/>
-          </div>
+
           <div className="surgeries">
             <label htmlFor="surgeries"className="surgeries">Surgeries</label>
             <textarea name="surgeries" className="surgeries" rows="5" id='surgeries' value={this.state.surgeries} onChange={this.handleChange}/>
