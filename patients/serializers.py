@@ -9,4 +9,4 @@ class PatientSerializer(serializers.ModelSerializer):
         fields = ('id', 'first_name', 'last_name', 'date_of_birth', 'height', 'weight', 'gender',
          'food_allergies', 'medication_allergies', 'primary_doctor',
          'primary_doctor_telephone_number', 'language', 'bed_patient', 'walking_devices',
-         'able_to_walk_alone', 'surgeries','upload' )
+         'able_to_walk_alone', 'surgeries', )

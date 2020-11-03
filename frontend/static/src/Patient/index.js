@@ -42,7 +42,7 @@ class Patient extends Component {
 
     const csrftoken = Cookies.get('csrftoken');
 
-    fetch('/api/v1/<int:pk>/', {
+    fetch('/api/v1/patients/', {
        method: 'POST',
        headers: {
          'Content-Type':'application/json',
@@ -106,10 +106,7 @@ render() {
           </div>
           <div className="form-group">
             <label htmlFor='bed_patient'className="bed_patient">Bed Patient</label>
-              <select className="bed_patient" id="bed_patient" name="bed_patient" value={this.state.bed_patient} onChange={this.handleChange}>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
+            <input type="checkbox" className="bed_patient" id="bed_patient" name="bed_patient" value={this.state.bed_patient} onChange={this.handleChange} />
           </div>
           <div className="form-group">
             <label htmlFor='walking_devices'className="walking_devices">Walking Devices</label>
@@ -117,7 +114,7 @@ render() {
           </div>
           <div className="form-group">
             <label htmlFor='able_to_walk_alone'className="able_to_walk_alone">Able To Walk Alone</label>
-            <input type="text" id='able_to_walk_alone' name="able_to_walk_alone" value={this.state.able_to_walk_alone} onChange={this.handleChange} />
+            <input type="checkbox"className="able_to_walk_alone" id="able_to_walk_alone" name="able_to_walk_alone" value={this.state.able_to_walk_alone} onChange={this.handleChange}/>
           </div>
           <div className="surgeries">
             <label htmlFor="surgeries"className="surgeries">Surgeries</label>
