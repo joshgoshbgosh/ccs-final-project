@@ -26,6 +26,7 @@ class Login extends Component {
     this.setState({[event.target.name]: event.target.value});
 }
 
+
 async handleLogIn(event){
 
   event.preventDefault();
@@ -42,6 +43,7 @@ async handleLogIn(event){
   const data = await response.json();
   if(data.key) {
     Cookies.set('Authorization', `Token ${data.key}`);
+  
   }
 };
 

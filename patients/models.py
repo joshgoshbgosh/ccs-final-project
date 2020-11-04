@@ -14,6 +14,7 @@ class Patient(models.Model):
     (Female, "Female"),
     ]
 
+    
     Wheel_Chair = "Wheel_Chair"
     Walker = "Walker"
     Cane = "Cane"
@@ -27,6 +28,7 @@ class Patient(models.Model):
 
     first_name = models.CharField(max_length=225)
     last_name = models.CharField(max_length=225, null=True)
+    address = models.CharField(max_length=225, null=True)
     image = models.ImageField(upload_to='patients/', null=True)
     date_of_birth = models.DateField(max_length=225)
     weight = models.CharField(max_length=225)
@@ -48,6 +50,17 @@ class Patient(models.Model):
         return self.last_name + ", " + self.first_name
 
 
-# class Medication(models.Model):
+class Prescription(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True)
+    brand_name = models.CharField(max_length=225)
+    medication_name = models.CharField(max_length=225)
+    directions = models.CharField(max_length=225)
+    quantity = models.CharField(max_length=225)
+    refills = models.CharField(max_length=225)
+    pharmacy_number = models.CharField(max_length=225)
+    rx = models.CharField(max_length=225)
+    prescriber = models.CharField(max_length=225)
+    label_image = models.ImageField(upload_to='precription/', null=True)
 
-    # medication_name = CharField(max_length=225)
+    def __str__(self):
+        return self.medication_name
