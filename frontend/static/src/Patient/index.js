@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
+import './index.css';
 
 
 class Patient extends Component {
