@@ -32,14 +32,18 @@ button{
   border: none;
   padding: 20px;
   font-size: 40px;
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 5px;
+  
 
 
 }
 button:hover {
   border:1px;
   border-color: #8A1065;
+    text-decoration: none;
+
+
 
 }
 button:focus {outline:0;}

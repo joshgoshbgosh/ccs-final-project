@@ -9,11 +9,14 @@ import Patient from '../Patient';
 import Cover from '../Cover';
 import Map from './../Map/MyGoogleMap';
 import Prescription from '../Prescription';
-
-
-
+import PatientList from '../PatientList';
+import About from '../About';
 
 function Router () {
+
+
+
+
   return (
     <BrowserRouter>
       <App>
@@ -24,7 +27,8 @@ function Router () {
         <Route path="/patient" component={Patient}/>
         <Route path="/map" component={Map}/>
         <Route path="/prescription" component={Prescription}/>
-
+        <Route path="/patientlist" component={PatientList}/>
+        <Route path="/about" component={About}/>
       </App>
     </BrowserRouter>
   )

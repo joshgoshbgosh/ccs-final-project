@@ -14,7 +14,7 @@ class Patient(models.Model):
     (Female, "Female"),
     ]
 
-    
+
     Wheel_Chair = "Wheel_Chair"
     Walker = "Walker"
     Cane = "Cane"
@@ -51,7 +51,7 @@ class Patient(models.Model):
 
 
 class Prescription(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     brand_name = models.CharField(max_length=225)
     medication_name = models.CharField(max_length=225)
     directions = models.CharField(max_length=225)

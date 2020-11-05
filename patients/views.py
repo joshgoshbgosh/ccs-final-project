@@ -7,12 +7,16 @@ from .serializers import PrescriptionSerializer
 
 # Create your views here.
 class PatientListAPIView(generics.ListCreateAPIView):
-    queryset = Patient.objects.all()
+    # queryset = Patient.objects.all()
     serializer_class = PatientSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Patient.objects.filter(user=user)
 
 class PatientDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Patient.objects.all()

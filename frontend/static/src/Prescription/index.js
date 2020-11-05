@@ -8,7 +8,7 @@ class Prescription extends Component {
     super(props);
 
     this.state = {
-      patient: 16,
+      patient: this.props.patientID,
       brand_name:'',
       medication_name:'',
       directions: '',
@@ -37,7 +37,7 @@ addPrescription(event){
          event.preventDefault();
 
          const csrftoken = Cookies.get('csrftoken');
-      
+
          const formData = new FormData();
          const data = Object.keys(this.state);
          // console.log('data', data);

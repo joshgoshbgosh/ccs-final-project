@@ -18,4 +18,4 @@ class PrescriptionSerializer(serializers.ModelSerializer):
         model = Prescription
         fields = ('id', 'brand_name',
         'medication_name', 'directions', 'quantity', 'refills', 'pharmacy_number',
-        'rx', 'prescriber', 'label_image')
+        'rx', 'prescriber', 'label_image', 'patient')

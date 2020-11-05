@@ -1,8 +1,24 @@
+div {
+  display:flex;
+  flex-direction: column;
+}
+input {
+
+}
+
 .avatar {
   font-size: 20px;
+  margin-right: 37px;
+  margin-top: 20px;
+
+}
+.photo {
+  margin-Left: 510px;
+
 }
 .first {
   font-size: 20px;
+  margin-top: 10px;
 }
 .last {
   font-size: 20px;
@@ -45,4 +61,5 @@
 }
 .surgeries {
   font-size: 20px;
+  margin-right: 17px;
 }
