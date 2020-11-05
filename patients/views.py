@@ -24,8 +24,6 @@ class PrescriptionListAPIView(generics.ListCreateAPIView):
     serializer_class = PrescriptionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
 class PrescriptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Prescription.objects.all()
