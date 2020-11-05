@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from '../App';
 import Registration from'../Registration';
 import Login from'../Login';
@@ -8,6 +8,7 @@ import Menu from'../Menu';
 import Patient from '../Patient';
 import Cover from '../Cover';
 import Map from './../Map/MyGoogleMap';
+import Prescription from '../Prescription';
 
 
 
@@ -22,6 +23,7 @@ function Router () {
         <Route path="/menu" component={Menu}/>
         <Route path="/patient" component={Patient}/>
         <Route path="/map" component={Map}/>
+        <Route path="/prescription" component={Prescription}/>
 
       </App>
     </BrowserRouter>

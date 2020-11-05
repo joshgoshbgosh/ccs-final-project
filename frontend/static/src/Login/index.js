@@ -2,6 +2,7 @@
 // all inputs controlled
 // post request to create a new user
 import React, { Component } from 'react';
+import './index.css';
 
 import Cookies from 'js-cookie';
 // import UserArticles from './UserArticles';
@@ -43,7 +44,7 @@ async handleLogIn(event){
   const data = await response.json();
   if(data.key) {
     Cookies.set('Authorization', `Token ${data.key}`);
-  
+
   }
 };
 
@@ -52,17 +53,20 @@ render() {
   return (
     <React.Fragment>
 
-    <div>
+    <div className="main">
+    <div className="log_div">
+    <h1 className="log-logo">GLOW</h1>
+    </div>
       <form className="col-12 col-md-6 mb-5" onSubmit={this.handleLogIn}>
-        <div className="form-group">
+        <div className="log-label form-group">
           <label className="form-userName">LOG IN</label>
           <input type="text" placeholder="Enter Username..." name="username" value={this.state.username} onChange ={this.handleChange} />
         </div>
-        <div className="form-group">
+        <div className="pass-lab form-group">
           <label className="form-password1"></label>
           <input type="text" placeholder="Enter Password..." name="password" value={this.state.password} onChange ={this.handleChange} />
         </div>
-        <button type="submit"className="sub btn btn-dark">Submit</button>
+        <button type="submit"className="subbut">SUBMIT</button>
       </form>
     </div>
   </React.Fragment>

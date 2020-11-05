@@ -1,0 +1,22 @@
+button{
+  margin-left: 520px;
+  background-color: white;
+  color: #8A1065;
+  border: none;
+  padding: 20px;
+  font-size: 40px;
+  font-weight: 200;
+  letter-spacing: 5px;
+
+
+}
+button:hover {
+  border:1px;
+  border-color: #8A1065;
+
+}
+button:focus {outline:0;}
+
+.form-userName {
+  margin-top: 70px;
+}

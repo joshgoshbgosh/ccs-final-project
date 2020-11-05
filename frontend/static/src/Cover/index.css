@@ -23,7 +23,9 @@ body {
     1px 22px 10px rgba(16,16,16,0.2),
     1px 25px 35px rgba(16,16,16,0.2),
     1px 30px 60px rgba(16,16,16,0.4);
+
 }
+
 
 i {
   font-size: 50px;
@@ -51,6 +53,7 @@ i {
 .fa-youtube-square {
   margin-left: 40px;
 }
+
 .create {
   font-size: 30px;
   letter-spacing: 8px;
@@ -63,6 +66,7 @@ i {
  font-size: 30px;
  letter-spacing: 8px;
  font-family: verdana;
+ color:#E895FF;
 
 }
 
@@ -72,8 +76,37 @@ i {
   margin-top: 40px;
 
 }
+.create {
+  transition: 2s;
+  color:#E895FF;
+}
+.create:hover {
+  text-decoration: none;
+  color:#8A1065;
+  transition: 1s;
+}
 
 
 .logn {
   margin-top: 40px;
+}
+.login {
+  transition: 2s;
+}
+.login:hover {
+  text-decoration: none;
+  color:#8A1065;
+  transition: 1s;
+}
+.fab {
+transition:1s;
+}
+
+
+
+.fab:hover {
+  opacity:0; /* Completely invisible. */
+    transition:1s; /* A 1 second transition. */
+
+  color: #CBDEF9;
 }

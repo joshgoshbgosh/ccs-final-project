@@ -3,6 +3,7 @@
 // post request to create a new user
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
+import './index.css';
 
 //class set here for the registration
 
@@ -73,7 +74,7 @@ handleChange (event){
                 <label className="form-password2"></label>
                 <input type="text" placeholder="Re-enter Password..." name="password2" value={this.state.title} onChange ={this.handleChange} />
             </div>
-              <button type="submit"className="sub btn btn-dark">Submit</button>
+              <button type="submit"className="subbut">Submit</button>
           </form>
 
           </React.Fragment>
