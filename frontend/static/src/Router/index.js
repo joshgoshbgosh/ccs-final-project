@@ -11,6 +11,7 @@ import Map from './../Map/MyGoogleMap';
 import Prescription from '../Prescription';
 import PatientList from '../PatientList';
 import About from '../About';
+import Medication_List from './../Patient/medicationlist';
 
 function Router () {
 

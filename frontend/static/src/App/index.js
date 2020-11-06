@@ -24,10 +24,29 @@ class App extends Component {
 
     this.state = {
       patientList: [],
+
     }
 
     this.fetchPatientList = this.fetchPatientList.bind(this);
+
   }
+
+  deletePatient(id) {
+    fetch(`api/v1/patients/${id}/`,{
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(result => console.log('Celebrate:', result));
+  }
+
+  patient(data) {
+    console.log('data', data);
+    let html = '';
+    data.forEach(function(patient){
+      html += `<li><p>${patient.detail}</p><button onclick=deletePatient('${patient._id}')>Delete</button></li>`
+  })
+}
+
 
   async fetchPatientList() {
     const handleError = (err) => console.warn(err);
@@ -38,7 +57,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="container App">
         <Switch>
           <Route path="/cover" component={Cover}/>
           <Route path="/menu" component={Menu}/>

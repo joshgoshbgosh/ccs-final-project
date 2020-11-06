@@ -24,10 +24,17 @@ class PatientDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class PrescriptionListAPIView(generics.ListCreateAPIView):
-    queryset = Prescription.objects.all()
+    # queryset = Prescription.objects.all()
     serializer_class = PrescriptionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
+
+    def get_queryset(self):
+        # user = self.request.user
+        # import pdb; pdb.set_trace()
+        # kwargs is equal to {'pk': 15}
+        patient = self.kwargs.get('pk')
+        return Prescription.objects.filter(patient=patient)
 
 class PrescriptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Prescription.objects.all()

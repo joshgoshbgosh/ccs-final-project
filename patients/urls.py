@@ -5,7 +5,7 @@ from .views import PatientListAPIView, PatientDetailAPIView, PrescriptionListAPI
 
 urlpatterns = [
     path('<int:user>/prescription/<int:pk>/', PrescriptionDetailAPIView.as_view(), name='prescription_list'),
-    path('prescriptions/', PrescriptionListAPIView.as_view(), name='prescription_list'),
+    path('prescriptions/<int:pk>/', PrescriptionListAPIView.as_view(), name='prescription_list'),
     path('<int:pk>/', PatientDetailAPIView.as_view(), name='patient_list'),
     path('', PatientListAPIView.as_view(), name='patient_list'),
 

@@ -56,8 +56,8 @@ handleChange (event){
       render() {
         return(
           <React.Fragment>
-
-          <form className="col-12 col-md-6 mb-5" onSubmit={(event) => {this.addUser(event, this.state); this.setState({username:'', email:'', password1:'', password2: ''})}}>
+          <div className="row justify-content-center">
+          <form className="col-lg-6 col-xs-12" onSubmit={(event) => {this.addUser(event, this.state); this.setState({username:'', email:'', password1:'', password2: ''})}}>
             <div className="form-group">
               <label className="form-userName">CREATE ACCOUNT</label>
               <input type="text" placeholder="Enter Username..."name="username" value={this.state.userName} onChange ={this.handleChange}  />
@@ -76,7 +76,7 @@ handleChange (event){
             </div>
               <button type="submit"className="subbut">Submit</button>
           </form>
-
+          </div>
           </React.Fragment>
         )
       }

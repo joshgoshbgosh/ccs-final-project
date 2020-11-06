@@ -53,13 +53,16 @@ render() {
   return (
     <React.Fragment>
 
-    <div className="main">
-    <div className="log_div">
-    <h1 className="log-logo">GLOW</h1>
-    </div>
-      <form className="col-12 col-md-6 mb-5" onSubmit={this.handleLogIn}>
+
+      <div className=" row justify-content-center">
+      <form className="col-lg-6 col-xs-12" onSubmit={this.handleLogIn}>
+      <div className="log_div">
+      <h1 className="log-logo">GLOW</h1>
+      </div>
         <div className="log-label form-group">
           <label className="form-userName">LOG IN</label>
+          </div>
+          <div>
           <input type="text" placeholder="Enter Username..." name="username" value={this.state.username} onChange ={this.handleChange} />
         </div>
         <div className="pass-lab form-group">
@@ -68,7 +71,8 @@ render() {
         </div>
         <button type="submit"className="subbut">SUBMIT</button>
       </form>
-    </div>
+      </div>
+
   </React.Fragment>
 
                         )

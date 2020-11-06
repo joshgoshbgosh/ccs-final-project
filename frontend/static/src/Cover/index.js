@@ -15,7 +15,8 @@ class Cover extends Component {
     return(
 
     <React.Fragment>
-    <div className="cover_container">
+    <div classname="row justify-content-center">
+    <div className="col-12 col-xs-12 cover_container">
     <div className="cover_logo">
     <h1 className="logo">GLOW</h1>
     </div>
@@ -30,6 +31,7 @@ class Cover extends Component {
     </div>
     <div className="logn">
     <a className="login"href="http://localhost:3000/login">LOGIN</a>
+    </div>
     </div>
     </div>
     </React.Fragment>

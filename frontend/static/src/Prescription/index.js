@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 
 
-class Prescription extends Component {
+class PrescriptionForm extends Component {
   constructor(props){
     super(props);
 
@@ -103,4 +103,4 @@ render() {
 
 
 }
-export default Prescription;
+export default PrescriptionForm;

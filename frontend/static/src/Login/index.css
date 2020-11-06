@@ -1,32 +1,43 @@
-.main {
+ .main {
   height: 100%;
 
+
 }
+
+
 
 .form-group {
- display:flex;
- flex-direction: column;
- width: 300px;
- margin-left: 470px;
+
+
+ 
+
+
 
 
 }
-.log-label {
-  margin-top: 0px;
 
-}
+
+
+
+
 input {
   width: 300px;
+  /* margin-left: -9px; */
   border-color: #8A1065;
+  text-align: center;
 }
 input:focus {outline:0;}
 
 .pass-lab {
   margin-top: 50px;
+
+}
+.form-userName {
+
 }
 
 button{
-  margin-left: 520px;
+  /* margin-left:84px; */
   background-color: white;
   color: #8A1065;
   border: none;
@@ -34,7 +45,7 @@ button{
   font-size: 40px;
   font-weight: 300;
   letter-spacing: 5px;
-  
+
 
 
 }
@@ -57,12 +68,14 @@ label {
    letter-spacing: 4px;
    color:#8A1065;
    font-weight: 100;
+
 }
 .log-logo {
-  display:inline-block;
+  /* display:inline-block;
   position: relative;
-  top: 20px;
+  top: 20px; */
   margin-top: 40px;
+
   text-transform: uppercase;
   font-family: verdana;
   font-size: 6.6em;
@@ -82,4 +95,8 @@ label {
   1px 22px 10px rgba(16,16,16,0.2),
   1px 25px 35px rgba(16,16,16,0.2),
   1px 30px 60px rgba(16,16,16,0.4);
+}
+
+form {
+  text-align: center;
 }
