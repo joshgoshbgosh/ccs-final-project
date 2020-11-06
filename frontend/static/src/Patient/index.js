@@ -8,7 +8,24 @@ class PatientDetail extends Component {
     this.state = {
 
     }
+
   }
+  deletePatient(id) {
+    fetch(`api/v1/patients/${id}/`,{
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(result => console.log('Celebrate:', result));
+  }
+
+  function buildHTML(data) {
+    console.log('data', data);
+    let html = '';
+    data.forEach(function(patient){
+      html += `<li><p>${patient.detail}</p><button onclick=deletePatient('${patient._id}')>Delete</button></li>`
+  })
+}
+
 
   componentDidMount() {
     const id = this.props.match.params.id

@@ -34,6 +34,7 @@ i {
 
 .cover_font_awesome {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   margin-top: 40px;
   font-weight: 700;
@@ -42,22 +43,25 @@ i {
 
 }
 .fa-facebook-square{
-  margin-right: 40px;
+  margin-right: 120px;
+  display:inline-block;
 
 
 }
 
 .fa-instagram {
+  display:inline-block;
 
 }
 .fa-youtube-square {
-  margin-left: 40px;
+  margin-left: 120px;
+  display:inline-block;
 }
 
 .create {
   font-size: 30px;
   letter-spacing: 8px;
-  padding-top: 40px;
+  padding-top: 30px;
   font-weight: 200;
   font-family: verdana;
 }

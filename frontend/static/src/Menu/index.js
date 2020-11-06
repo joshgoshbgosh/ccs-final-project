@@ -41,7 +41,7 @@ this.handleLogOut = this.handleLogOut.bind(this);
         <React.Fragment>
           <nav>
           <div>
-          <a href="">ABOUT</a>
+          <a href="http://localhost:3000/about">ABOUT</a>
           </div>
           <div>
           <a href="http://localhost:3000/patient">CREATE PATIENT</a>
