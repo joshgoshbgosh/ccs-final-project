@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-import './index.css';
+import './form.css';
 
 
 class PatientForm extends Component {

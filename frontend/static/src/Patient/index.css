@@ -1,65 +1,8 @@
-/* div {
-  display:flex;
-  flex-direction: column;
-}
-input {
+div > div{
+  font-size: 20px;
+  
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 
 }
-
-.avatar {
-  font-size: 20px;
-  margin-right: 37px;
-  margin-top: 20px;
-
-}
-.photo {
-  margin-Left: 510px;
-
-}
-.first {
-  font-size: 20px;
-  margin-top: 10px;
-}
-.last {
-  font-size: 20px;
-}
-.address {
-  font-size: 20px;
-}
-.bday {
-  font-size: 20px;
-}
-.weight {
-  font-size: 20px;
-}
-.height {
-  font-size: 20px;
-}
-.gender {
-  font-size: 20px;
-}
-.food_all {
-  font-size: 20px;
-}
-.med_allegery {
-  font-size: 20px;
-}
-.doctor {
-  font-size: 20px;
-}
-.number {
-  font-size: 20px;
-}
-.language {
-  font-size: 20px;
-}
-.bed_patient {
-  font-size: 20px;
-}
-.walking_devices {
-  font-size: 20px;
-}
-.surgeries {
-  font-size: 20px;
-  margin-right: 17px;
-} */

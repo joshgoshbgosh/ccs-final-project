@@ -11,7 +11,7 @@ import Map from './../Map/MyGoogleMap';
 import Prescription from '../Prescription';
 import PatientList from '../PatientList';
 import About from '../About';
-import Medication_List from './../Patient/medicationlist';
+
 
 function Router () {
 
@@ -30,6 +30,7 @@ function Router () {
         <Route path="/prescription" component={Prescription}/>
         <Route path="/patientlist" component={PatientList}/>
         <Route path="/about" component={About}/>
+
       </App>
     </BrowserRouter>
   )
