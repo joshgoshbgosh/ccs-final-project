@@ -56,7 +56,8 @@ addPrescription(event){
          });
          };
 
-         async deleteMed(id){
+         async deleteMed(event, id){
+            event.preventDefault();
              const options = {
                method: 'DELETE',
                headers:{
@@ -66,11 +67,10 @@ addPrescription(event){
              }
              const handleError = (err) => console.warn(err);
 
-             await fetch(`api/v1/patients/<int:user>/prescription/<int:pk>/${id}/`, options).catch(handleError);
+             await fetch(`api/v1/patients/<int:user>/prescription/<int:pk>/${id}/`, options)
+            const data = await response.json().catch(handleError)
              const prescriptions = [...this.state.prescriptions]
-             const index = prescriptions.findIndex(prescription => prescription.id === id)
-             prescriptions.splice(index,1);
-             this.setState({prescriptions})
+             
 
            }
            // <button onClick={() => deleteMed({ id: id })}>Delete</button>

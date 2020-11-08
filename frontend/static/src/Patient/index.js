@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PrescriptionForm from './../Prescription';
 import './index.css';
-
+import Card from 'react-bootstrap/Card';
 class Prescription extends Component {       //this is displaying patient meds on display page
   constructor(props) {
     super(props);
@@ -23,26 +23,12 @@ class Prescription extends Component {       //this is displaying patient meds o
     console.log(this.props.prescription)
     this.setState({...this.props.prescription});
   }
-//   deletePatient(id) {
-//     fetch(`/api/v1/patients/<int:user>/prescription/<int:pk>/`,{
-//       method: 'DELETE'
-//     })
-//     .then(response => response.json())
-//     .then(result => console.log('Celebrate:', result));
-//   }
-//
-//   patient(data) {
-//     console.log('data', data);
-//     let html = '';
-//     data.forEach(function(patient){
-//       html += `<li><p>${prescription.detail}</p><button onclick=deletePatient('${prescription._id}')>Delete</button></li>`
-//   })
-// }
-
 
   render() {
+    const prescription = this.props.prescription;
     return(
-      <div className="med-display">
+       <div className="med-display">
+
         <div className='row'>
         <div className='col-lg-3 col-xs-12'>
         <div className="detail-display">{this.state.brand_name}</div>
@@ -53,6 +39,7 @@ class Prescription extends Component {       //this is displaying patient meds o
         <div>{this.state.prescriber}</div>
         <div>{this.state.rx}</div>
         <div>{this.state.pharmacy_number}</div>
+
         </div>
         </div>
       </div>
@@ -85,6 +72,8 @@ class PatientDetail extends Component {
     const prescriptions = this.state.prescriptions?.map(prescription => <Prescription prescription={prescription}/>)
     return(
       <div>
+
+
         <div>{this.state.first_name}</div>
         <div>{this.state.last_name}</div>
         <div>{this.state.date_of_birth}</div>

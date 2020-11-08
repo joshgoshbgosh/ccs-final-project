@@ -10,7 +10,7 @@ class PatientCard extends Component {
     const patient = this.props.patient;
     return(
       <Link to={`/patient/${patient.id}`}>
-      
+
       <Card>
         <Card.Img variant="top" src={patient.image}/>
         <Card.Body>
