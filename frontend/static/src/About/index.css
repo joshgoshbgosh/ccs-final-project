@@ -9,20 +9,15 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 .home-button {
   display:inline-block;
- color: #8A1065;
+ color: black;
  letter-spacing: 5px;
  font-weight: 500;
  font-size: 30px;
- transition: 3s;
+ 
 
 }
 .home-button:focus {outline:0;}
-.home-button:hover {
-  text-decoration: none;
-  transition: 2s;
-  font-size: 40px;
-  color: #8A1065;
-}
+
 .about-img {
   width: 465px;
   margin-top: 10px;

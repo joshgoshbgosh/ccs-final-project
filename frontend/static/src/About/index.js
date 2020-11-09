@@ -19,7 +19,7 @@ render(){
          <img className="about-img"src={family} />
          <p>
          Hello my name is Josh Lanier and this is my app GLOW.  My dad is an Alzheimer's patient.  He currently
-         is getting in home care by my mom and contracted caregivers 24/7.  Glow(Generated Log Of Wellbeing)
+         is getting in home care by my mom and contracted caregivers 24/7.  Glow(Generated Log Of Well-Being)
          is an app designed from seeing the struggle of family members taking care of their loved ones.
           From hired help not being detailed enough, to family care takers not having the tools needed for the
           best care possible,  Glow is designed for simplicity, yet  high quality detailed effectiveness for

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import GoogleMapReact from 'google-map-react';
-
+import './map.css';
 import styled from 'styled-components';
 
 import AutoComplete from './Autocomplete';
@@ -157,11 +157,15 @@ class MyGoogleMap extends Component {
 
 
                 </GoogleMapReact>
-
+                <div className="bottom">
                 <div className="info-wrapper">
                     <div className="map-details">Latitude: <span>{this.state.lat}</span>, Longitude: <span>{this.state.lng}</span></div>
                     <div className="map-details">Zoom: <span>{this.state.zoom}</span></div>
                     <div className="map-details">Address: <span>{this.state.address}</span></div>
+                </div>
+                <div>
+                <a className="home-button" href="http://localhost:3000/menu">HOME MENU</a>
+                </div>
                 </div>
 
 
