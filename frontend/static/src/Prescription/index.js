@@ -56,23 +56,7 @@ addPrescription(event){
          });
          };
 
-         async deleteMed(event, id){
-            event.preventDefault();
-             const options = {
-               method: 'DELETE',
-               headers:{
-                 'X-CSRFToken': Cookies.get('csrftoken'),
-                 'Content-Type': 'application/json'
-               },
-             }
-             const handleError = (err) => console.warn(err);
-
-             await fetch(`api/v1/patients/<int:user>/prescription/<int:pk>/${id}/`, options)
-            const data = await response.json().catch(handleError)
-             const prescriptions = [...this.state.prescriptions]
-             
-
-           }
+        
            // <button onClick={() => deleteMed({ id: id })}>Delete</button>
 
 

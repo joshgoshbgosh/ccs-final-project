@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PrescriptionForm from './../Prescription';
 import './index.css';
-import Card from 'react-bootstrap/Card';
+import Cookies from 'js-cookie';
+// import Card from 'react-bootstrap/Card';
 class Prescription extends Component {       //this is displaying patient meds on display page
   constructor(props) {
     super(props);
@@ -17,12 +18,15 @@ class Prescription extends Component {       //this is displaying patient meds o
       pharmacy_number:'',
 
     }
+
   }
 
   componentDidMount() {
     console.log(this.props.prescription)
     this.setState({...this.props.prescription});
   }
+
+
 
   render() {
     const prescription = this.props.prescription;
@@ -39,6 +43,8 @@ class Prescription extends Component {       //this is displaying patient meds o
         <div>{this.state.prescriber}</div>
         <div>{this.state.rx}</div>
         <div>{this.state.pharmacy_number}</div>
+        <button type='button' onClick={()=> this.props.deleteMed(this.props.prescription)}>Delete</button>
+        <button type='button' onClick={()=> this.props.editMed(this.props.prescription)}>Edit</button>
 
         </div>
         </div>
@@ -56,7 +62,8 @@ class PatientDetail extends Component {
     this.state = {
 
     }
-
+this.deleteMed = this.deleteMed.bind(this);
+// this.editMed = this.editMed.bind(this);
   }
 
 
@@ -67,9 +74,47 @@ class PatientDetail extends Component {
     .then(response => response.json())
     .then(data => this.setState({...data}));
   }
+  async deleteMed(prescription){
+
+      const options = {
+        method: 'DELETE',
+        headers:{
+          'X-CSRFToken': Cookies.get('csrftoken'),
+          'Content-Type': 'application/json'
+        },
+      }
+      const handleError = (err) => console.warn(err);
+
+      const response = await fetch(`/api/v1/patients/prescription/${prescription.id}/`, options)
+     const data = await response.json().catch(handleError)
+      const prescriptions = [...this.state.prescriptions]
+      const index = prescriptions.indexOf(prescription)
+      prescriptions.splice(index, 1)
+      this.setState({prescriptions})
+
+    }
+    // async editMed(id) {
+    //   event.preventDefault();
+    //   let formData = new FormData();
+    //
+    //   const options = {
+    //     method: 'PUT',
+    //     headers: {
+    //       'X-CSRFToken': Cookies.get('csrftoken'),
+    //       'Content-Type': 'application/json'
+    //     },
+    //         body:formData,
+    //   }
+    //   const handleError = (err) => console.warn(err);
+    //   const response = await fetch(`/api/v1/patients/prescription/${prescription.id}/`, options)
+    //  const data = await response.json().catch(handleError)
+    //  const index = prescriptions.findIndex(prescription => prescription.id === id);
+    //  prescriptions[index] = updatedPrescription;
+    // }
 
   render() {
-    const prescriptions = this.state.prescriptions?.map(prescription => <Prescription prescription={prescription}/>)
+    const prescriptions = this.state.prescriptions?.map(prescription => <Prescription prescription={prescription} deleteMed = {this.deleteMed}
+      editMed = {this.editMed}/>)
     return(
       <div>
 

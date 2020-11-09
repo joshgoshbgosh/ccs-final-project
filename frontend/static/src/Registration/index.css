@@ -1,14 +1,17 @@
 button{
-  
+
   background-color: white;
   color: #8A1065;
   border: none;
   padding: 20px;
   font-size: 40px;
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 5px;
 
 
+}
+.acbox {
+  margin-top: 50px;
 }
 button:hover {
   border:1px;
@@ -19,4 +22,36 @@ button:focus {outline:0;}
 
 .form-userName {
   margin-top: 70px;
+}
+
+.cover_font_awesome {
+  display:flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+i {
+  font-size: 30px;
+
+}
+.one {
+margin-right: 75px;
+color: #014FF1;
+
+}
+
+.two {
+  margin-right: 75px;
+  color: #4FCAF0;
+
+}
+
+.three {
+  color: #CB28A2;
+
+}
+
+.four {
+  margin-left: 75px;
+  color: #7C0F7D;
+
 }

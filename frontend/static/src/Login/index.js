@@ -59,6 +59,18 @@ render() {
       <div className="log_div">
       <h1 className="log-logo">GLOW</h1>
       </div>
+      <div className="cover_font_awesome">
+
+        <i class="one fas fa-circle"></i>
+
+        <i class="two fas fa-circle"></i>
+
+        <i class="three fas fa-circle"></i>
+
+        <i class="four fas fa-circle"></i>
+
+
+      </div>
         <div className="log-label form-group">
           <label className="form-userName">LOG IN</label>
           </div>

@@ -56,6 +56,20 @@ handleChange (event){
       render() {
         return(
           <React.Fragment>
+          <div className="acbox">
+          <div className="cover_font_awesome">
+
+            <i class="one fas fa-circle"></i>
+
+            <i class="two fas fa-circle"></i>
+
+            <i class="three fas fa-circle"></i>
+
+            <i class="four fas fa-circle"></i>
+
+
+          </div>
+          </div>
           <div className="row justify-content-center">
           <form className="col-lg-6 col-xs-12" onSubmit={(event) => {this.addUser(event, this.state); this.setState({username:'', email:'', password1:'', password2: ''})}}>
             <div className="form-group">

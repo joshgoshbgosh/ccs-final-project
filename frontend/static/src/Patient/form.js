@@ -72,11 +72,11 @@ class PatientForm extends Component {
 render() {
     return (
       <React.Fragment>
-        <form className="news-form col-12 col-md-6" onSubmit={(event) => {this.addPatient(event, this.state); this.setState({first_name:'', last_name:'',
+        <form className="news-form col-lg-6 col-xs-12" onSubmit={(event) => {this.addPatient(event, this.state); this.setState({first_name:'', last_name:'',
       date_of_birth:'', weight:'', height:'', gender:('Male','Female'), food_allergies:'', medication_allergies:'', primary_doctor:'',
     primary_doctor_telephone_number:'', language:'', bed_patient:'', walking_devices:('Wheel_Chair', 'Walker', 'Cane'), able_to_walk_alone:'', surgeries:''})}}>
 
-        <div className="col-12 col-md-6">
+        <div className="col-lg-6 col-xs-12">
           <label htmlFor='image'className="avatar">Profile Image</label>
           <input className="photo"type="file" name="image" onChange={this.handleUpload}/>
           <img src={this.state.upload}/>
