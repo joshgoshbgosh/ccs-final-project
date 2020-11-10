@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 import Cookies from 'js-cookie';
+import './index.css';
 
 
 class Menu extends Component {
@@ -41,13 +42,25 @@ this.handleLogOut = this.handleLogOut.bind(this);
         <React.Fragment>
           <nav>
           <div>
-          <a href="http://localhost:3000/about">ABOUT</a>
+          <a className="about-ref"href="http://localhost:3000/about">ABOUT</a>
           </div>
           <div>
-          <a href="http://localhost:3000/patient">CREATE PATIENT</a>
+          <a className="make-pat"href="http://localhost:3000/patient">CREATE PATIENT</a>
           </div>
           <div>
-          <a href="http://localhost:3000/map">FIND PHARMACY</a>
+          <a className="findpharm"href="http://localhost:3000/map">FIND PHARMACY</a>
+          </div>
+          <div className="cover_font_awesome">
+
+            <i class="one fas fa-circle"></i>
+
+            <i class="two fas fa-circle"></i>
+
+            <i class="three fas fa-circle"></i>
+
+            <i class="four fas fa-circle"></i>
+
+
           </div>
           <div>
           <button className="log-out" onClick={this.handleLogOut}>LOG OUT</button>

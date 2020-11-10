@@ -53,6 +53,8 @@ class Patient(models.Model):
 class Prescription(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="prescriptions")
     brand_name = models.CharField(max_length=225)
+    hourly_frequency = models.IntegerField(null=True, blank=True)
+    take_as_needed = models.BooleanField(default=False)
     medication_name = models.CharField(max_length=225)
     directions = models.CharField(max_length=225)
     quantity = models.CharField(max_length=225)

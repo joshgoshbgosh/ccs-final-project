@@ -17,6 +17,8 @@ class PrescriptionForm extends Component {
       pharmacy_number:'',
       rx:'',
       prescriber:'',
+      take_as_needed: false,
+      hourly_frequency:'',
       label_image:null,
     }
 
@@ -84,6 +86,16 @@ render() {
             </div>
             <div>
             <input type="text" id='directions' name="directions" value={this.state.directions} onChange={this.handleChange} />
+          </div>
+          <div className="form-group">
+            <label htmlFor='hourly_frequency'className="direct">Hourly Frequency</label>
+            </div>
+            <div>
+            <input type="text" id='hourly_frequency' name="hourly_frequency" value={this.state.hourly_frequency} onChange={this.handleChange} />
+          </div>
+          <div className="form-group">
+            <label htmlFor='take_as_needed'className="take_as_needed">Take As Needed</label>
+            <input type="checkbox" className="take_as_needed" id="take_as_needed" name="take_as_needed" value={this.state.take_as_needed} onChange={this.handleChange} />
           </div>
           <div className="form-group">
             <label htmlFor='quantity'className="quantity">Quantity</label>

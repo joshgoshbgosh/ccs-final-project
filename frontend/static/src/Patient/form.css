@@ -7,7 +7,7 @@
 
 }
 .photo {
-  margin-Left: 510px;
+  /* margin-Left: 510px; */
 
 }
 .first {
@@ -56,4 +56,8 @@
 .surgeries {
   font-size: 20px;
   margin-right: 17px;
+}
+div.patient_form {
+margin-left: 400px;
+
 }
