@@ -66,3 +66,11 @@ class Prescription(models.Model):
 
     def __str__(self):
         return self.medication_name
+
+class Dose(models.Model):
+    prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE, related_name="doses")
+    comments = models.TextField(default=None, null=True, blank=True)
+    datetime = models.DateTimeField(null=True)
+
+    def __str__(self):
+        return self.comments

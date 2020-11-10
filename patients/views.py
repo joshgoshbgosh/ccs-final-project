@@ -1,9 +1,7 @@
 from rest_framework import generics, permissions
 
-from .models import Patient
-from .serializers import PatientSerializer
-from .models import Prescription
-from .serializers import PrescriptionSerializer
+from .models import Prescription, Dose, Patient
+from .serializers import PrescriptionSerializer, DoseSerializer, PatientSerializer
 
 # Create your views here.
 class PatientListAPIView(generics.ListCreateAPIView):
@@ -39,3 +37,15 @@ class PrescriptionListAPIView(generics.ListCreateAPIView):
 class PrescriptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Prescription.objects.all()
     serializer_class = PrescriptionSerializer
+
+class DoseListAPIView(generics.ListCreateAPIView):
+    serializer_class = DoseSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+class DoseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Dose.objects.all()
+    serializer_class = PrescriptionSerializer
+
+    def get_querset(self):
+        patient = self.kwargs.get('pk')
+        return Prescription.objects.filter(patient=patient)

@@ -50,7 +50,7 @@ this.handleLogOut = this.handleLogOut.bind(this);
           <div>
           <a className="findpharm"href="http://localhost:3000/map">FIND PHARMACY</a>
           </div>
-          <div className="cover_font_awesome">
+          <div className="menu_font_awesome">
 
             <i class="one fas fa-circle"></i>
 

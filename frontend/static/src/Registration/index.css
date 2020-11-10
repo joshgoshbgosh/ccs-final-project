@@ -28,6 +28,7 @@ button:focus {outline:0;}
   display:flex;
   justify-content: center;
   padding-top: 50px;
+  
 }
 i {
   font-size: 30px;
