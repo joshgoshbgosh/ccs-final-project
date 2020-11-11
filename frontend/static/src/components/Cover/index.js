@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import './index.css';
 
-import Cookies from 'js-cookie';
+
 
 class Cover extends Component {
 
-  constructor(props){
-    super(props)
-
-  }
+  
 
 
   render(){
@@ -20,7 +17,7 @@ class Cover extends Component {
     <div className="cover_logo">
       <h1 className="logo">GLOW</h1>
     </div>
-    
+
     <div className="cover_font_awesome">
 
       <i class="one fas fa-circle"></i>

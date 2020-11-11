@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 
 class Schedule extends Component {
@@ -41,7 +41,7 @@ class Schedule extends Component {
               <button type="button">Generate</button>
               </div>
 
-        
+
           </div>
       )
     }

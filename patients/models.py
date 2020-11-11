@@ -73,4 +73,4 @@ class Dose(models.Model):
     datetime = models.DateTimeField(null=True)
 
     def __str__(self):
-        return self.comments
+        return self.comments[:255]

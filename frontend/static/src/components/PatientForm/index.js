@@ -1,82 +1,73 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-import './form.css';
-
-
 class PatientForm extends Component {
-
   constructor(props) {
     super(props)
-
     this.state = {
       first_name: '',
       last_name:'',
       date_of_birth: '',
       weight: '',
       height:'',
-      gender: null,
+      gender: '',
       food_allergies:'',
       medication_allergies:'',
       primary_doctor:'',
       primary_doctor_telephone_number:'',
       language:'',
       bed_patient:'',
-      walking_devices: null,
+      walking_devices: '',
       able_to_walk_alone:'',
       surgeries:'',
       image: null,
       address:'',
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleUpload = this.handleUpload.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleError = this.handleError.bind(this);
   }
-
-
   handleChange (event){
     this.setState({[event.target.name]: event.target.value});
 }
-
   handleUpload (event){
     this.setState({[event.target.name]: event.target.files[0]});
   }
-
-
-
-  addPatient(event){
+  handleError(err) {
+    console.warn(err);
+  }
+  async handleSubmit(event){
     event.preventDefault();
-
     const csrftoken = Cookies.get('csrftoken');
     // shallow copy of state
     const patient = {...this.state};
-
     // remove walking device if one is not selected
     if(!patient.walking_devices) {
       delete patient.walking_devices
     }
-
+    // remove image if one is not selected
+    if(!patient.image) {
+      delete patient.label_image;
+    }
     const formData = new FormData();
-    const data = Object.keys(patient);
-
-    console.log(data)
-    // console.log('data', data);
-    data.forEach(item => formData.append(item, this.state[item]));
-
-    fetch('/api/v1/patients/', {
-       method: 'POST',
-       headers: {
-         'X-CSRFToken': csrftoken,
-       },
-       body: formData
-    });
+    const keys = Object.keys(patient);
+    keys.forEach(key => formData.append(key, this.state[key]));
+    const options = {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrftoken,
+        },
+        body: formData,
+    };
+    const response = await fetch('/api/v1/user/patients/', options).catch(this.handleError);
+    const data = await response.json().catch(this.handleError);
+    this.props.history.push(`/user/patients/${data.id}/`);
 };
 render() {
     return (
       <React.Fragment>
        <div className="row">
-        <form className="news-form col-lg-6 col-xs-12" onSubmit={(event) => {this.addPatient(event, this.state); this.setState({first_name:'', last_name:'',
-          date_of_birth:'', weight:'', height:'', gender:('Male','Female'), food_allergies:'', medication_allergies:'', primary_doctor:'',
-          primary_doctor_telephone_number:'', language:'', bed_patient:'', walking_devices:('Wheel_Chair', 'Walker', 'Cane'), able_to_walk_alone:'', surgeries:''})}}>
-
+        <form className="news-form col-lg-6 col-xs-12" onSubmit={this.handleSubmit}>
           <div className="patient_form">
                <div>
                     <div>
@@ -86,7 +77,7 @@ render() {
                       <input className="photo"type="file" name="image" onChange={this.handleUpload}/>
                     </div>
                     <div>
-                      <img src={this.state.upload}/>
+                      <img src={this.state.upload} alt=""/>
                     </div>
                     <div className="form-group">
                         <label htmlFor='first_name'className="first"></label>
@@ -106,7 +97,6 @@ render() {
                     <div>
                         <input type="text" id='address' placeholder="Address..."name="address" value={this.state.address} onChange={this.handleChange} />
                     </div>
-
                     <div className="form-group">
                         <label htmlFor='date_of_birth'className="bday"></label>
                     </div>
@@ -184,24 +174,19 @@ render() {
                         <option value="Cane">Cane</option>
                       </select>
                     </div>
-
                     <div className="surgeries">
                     <label htmlFor="surgeries"className="surgeries"></label>
                     </div>
                     <div>
                     <textarea name="surgeries" placeholder="Surgery History..."className="surgeries" rows="5" id='surgeries' value={this.state.surgeries} onChange={this.handleChange}/>
                     </div>
-
                   <button type="submit"className="sub btn btn-dark">Submit</button>
                 </div>
               </div>
           </form>
         </div>
-
       </React.Fragment>
-
    )
  }
-
 }
 export default PatientForm;

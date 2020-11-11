@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import './index.css';
 import Cookies from 'js-cookie';
-
-
 class PrescriptionForm extends Component {
   constructor(props){
     super(props);
-
     this.state = {
       patient: this.props.patientID,
       brand_name:'',
@@ -21,54 +18,43 @@ class PrescriptionForm extends Component {
       hourly_frequency:'',
       label_image:null,
     }
-
-  this.handleChange = this.handleChange.bind(this)
-  this.handleUpload = this.handleUpload.bind(this)
-  this.deleteMed = this.deleteMed.bind(this)
+  this.handleChange = this.handleChange.bind(this);
+  this.handleUpload = this.handleUpload.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
 }
-
 handleChange (event){
   this.setState({[event.target.name]: event.target.value});
 }
-deleteMed (event){
-  this.setState({[event.target.name]: event.target.value});
-}
-
 handleUpload (event){
   this.setState({[event.target.name]: event.target.files[0]});
 }
-
-addPrescription(event){
-         //this post is for image uploads
-         event.preventDefault();
-
-         const csrftoken = Cookies.get('csrftoken');
-
-         const formData = new FormData();
-         const data = Object.keys(this.state);
-         // console.log('data', data);
-         data.forEach(item => formData.append(item, this.state[item]));
-
-         fetch('/api/v1/patients/prescriptions/', {
-            method: 'POST',
-            headers: {
-              'X-CSRFToken': csrftoken,
-            },
-            body: formData
-         });
-         };
-
-
-           // <button onClick={() => deleteMed({ id: id })}>Delete</button>
-
-
+async handleSubmit(event){
+  event.preventDefault();
+  const id = this.props.match.params.id;
+  const csrftoken = Cookies.get('csrftoken');
+  const formData = new FormData();
+  const prescription = { ...this.state };
+  if(!prescription.label_image) {
+    delete prescription.label_image;
+  }
+  const keys = Object.keys(prescription);
+  keys.forEach(key => formData.append(key, prescription[key]));
+  formData.append('patient', id);
+  const options = {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': csrftoken,
+      },
+      body: formData,
+  };
+  await fetch(`/api/v1/user/patients/${id}/prescriptions/`, options);
+  this.props.history.push(`/user/patients/${id}`);
+};
 render() {
   return(
       <React.Fragment>
       <div className="row">
-        <form className="col-lg-12 col-xs-12 med-form" onSubmit={(event) => {this.addPrescription(event, this.state); this.setState({
-          brand_name:'', medication_name: '', directions:'', quantity:'', refills:'', pharmacy_number:'', rx:'',
-          prescriber:''})}}>
+        <form className="col-lg-12 col-xs-12 med-form" onSubmit={this.handleSubmit} >
           <div className="form-group">
             <label htmlFor='brand_name'className="brand">Brand Name</label>
             </div>
@@ -132,7 +118,7 @@ render() {
             </div>
             <div>
             <input type="file" name="label_image" onChange={this.handleUpload}/>
-            <img src={this.state.upload}/>
+            <img src={this.state.upload} alt=""/>
           </div>
           <div>
           <button type="submit"className="sub btn btn-dark">Submit</button>
@@ -142,7 +128,5 @@ render() {
       </React.Fragment>
     )
   }
-
-
 }
 export default PrescriptionForm;

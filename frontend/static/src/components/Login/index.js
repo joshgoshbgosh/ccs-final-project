@@ -3,8 +3,9 @@
 // post request to create a new user
 import React, { Component } from 'react';
 import './index.css';
+import { Redirect } from 'react-router-dom';
 
-import Cookies from 'js-cookie';
+
 // import UserArticles from './UserArticles';
 
 class Login extends Component {
@@ -18,7 +19,7 @@ class Login extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleLogIn = this.handleLogIn.bind(this);
+    // this.handleLogIn = this.handleLogIn.bind(this);
 
 
   }
@@ -28,34 +29,37 @@ class Login extends Component {
 }
 
 
-async handleLogIn(event){
-
-  event.preventDefault();
-  const csrftoken = Cookies.get('csrftoken');
-  const response = await fetch('/api/v1/rest-auth/login/', {
-     method: 'post',
-     headers: {
-       'Content-Type':'application/json',
-        'X-CSRFToken': csrftoken,
-      },
-     body: JSON.stringify(this.state)
-  });
-
-  const data = await response.json();
-  if(data.key) {
-    Cookies.set('Authorization', `Token ${data.key}`);
-
-  }
-};
+// async handleLogIn(event){
+//
+//   event.preventDefault();
+//   const csrftoken = Cookies.get('csrftoken');
+//   const response = await fetch('/api/v1/rest-auth/login/', {
+//      method: 'post',
+//      headers: {
+//        'Content-Type':'application/json',
+//         'X-CSRFToken': csrftoken,
+//       },
+//      body: JSON.stringify(this.state)
+//   });
+//
+//   const data = await response.json();
+//   if(data.key) {
+//     Cookies.set('Authorization', `Token ${data.key}`);
+//
+//   }
+// };
 
 
 render() {
+  if(this.props.isLoggedIn) {
+      return <Redirect to="/" />
+    }
   return (
     <React.Fragment>
 
 
       <div className=" row justify-content-center">
-      <form className="col-lg-6 col-xs-12" onSubmit={this.handleLogIn}>
+      <form className="col-lg-6 col-xs-12" onSubmit={(event) => this.props.handleLogin(event, this.state)}>
       <div className="log_div">
       <h1 className="log-logo">GLOW</h1>
       </div>

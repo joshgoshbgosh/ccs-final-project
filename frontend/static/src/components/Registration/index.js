@@ -2,9 +2,9 @@
 // all inputs controlled
 // post request to create a new user
 import React, { Component } from 'react';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import './index.css';
-
+import { Redirect } from 'react-router-dom';
 //class set here for the registration
 
 class Registration extends Component {
@@ -30,30 +30,33 @@ handleChange (event){
 
   }
 
-  async addUser(event) {
-
-    event.preventDefault();
-    const csrftoken = Cookies.get('csrftoken');
-    const response = await fetch('/api/v1/rest-auth/registration/', {
-      method: 'POST',
-      headers: {
-        'Content-Type':'application/json',
-        'X-CSRFToken': csrftoken,
-      },
-      body: JSON.stringify(this.state)
-    });
-
-    const data = await response.json();
-
-    if(data.key) {
-      Cookies.set('Authorization', `Token ${data.key}`);
-
-    }
-  };
+  // async addUser(event) {
+  //
+  //   event.preventDefault();
+  //   const csrftoken = Cookies.get('csrftoken');
+  //   const response = await fetch('/api/v1/rest-auth/registration/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type':'application/json',
+  //       'X-CSRFToken': csrftoken,
+  //     },
+  //     body: JSON.stringify(this.state)
+  //   });
+  //
+  //   const data = await response.json();
+  //
+  //   if(data.key) {
+  //     Cookies.set('Authorization', `Token ${data.key}`);
+  //
+  //   }
+  // };
 
 
 
       render() {
+        if(this.props.isLoggedIn) {
+            return <Redirect to="/" />
+          }
         return(
           <React.Fragment>
           <div className="acbox">
@@ -71,7 +74,7 @@ handleChange (event){
           </div>
           </div>
           <div className="row justify-content-center">
-          <form className="col-lg-6 col-xs-12" onSubmit={(event) => {this.addUser(event, this.state); this.setState({username:'', email:'', password1:'', password2: ''})}}>
+          <form className="col-lg-6 col-xs-12" onSubmit={(event) => this.props.handleRegistration(event, this.state)}>
             <div className="form-group">
               <label className="form-userName">CREATE ACCOUNT</label>
               <input type="text" placeholder="Enter Username..."name="username" value={this.state.userName} onChange ={this.handleChange}  />
