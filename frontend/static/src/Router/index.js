@@ -11,7 +11,7 @@ import Map from './../Map/MyGoogleMap';
 import Prescription from '../Prescription';
 import PatientList from '../PatientList';
 import About from '../About';
-import Patient from './..Patient/Schedule';
+import Schedule from '../Schedule';
 
 
 

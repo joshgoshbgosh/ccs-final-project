@@ -2,7 +2,7 @@
   display:flex;
   flex-direction: row;
 
-  width:450px;
+  width:465px;
   height: 200px;
   margin-left: 10px;
   margin-top: 10px;
@@ -26,3 +26,23 @@ a:hover {
 a {
   display:inline-block;
 }
+.left {
+  width:1000px;
+  display: ;
+  flex-direction: row;
+  justify-content: center;
+
+}
+/* .plist_home {
+  font-size: 40px;
+  color:#8A1065;
+  letter-spacing: 5px;
+  font-weight: 400;
+  text-align: center;
+}
+.box {
+ margin-top: 270px;
+ margin-left: 250px;
+text-align: center;
+
+} */

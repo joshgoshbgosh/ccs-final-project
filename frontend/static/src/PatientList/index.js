@@ -37,7 +37,29 @@ class PatientList extends Component {
     const patients = this.props.patientList.map(patient => <PatientCard key={patient.id} patient={patient}/>);
     return(
       <React.Fragment>
-        {patients}
+      <div className="left">
+      {patients}
+      </div>
+        <div className="row box">
+        <div className="col-lg-6 col-xs-12">
+
+        <div className="plist_font_awesome">
+
+          <i class="one fas fa-circle"></i>
+
+          <i class="two fas fa-circle"></i>
+
+          <i class="three fas fa-circle"></i>
+
+          <i class="four fas fa-circle"></i>
+
+        </div>
+
+        <div>
+        <a className="plist_home"href="http://localhost:3000/menu">HOME</a>
+        </div>
+        </div>
+        </div>
       </React.Fragment>
     )
   }

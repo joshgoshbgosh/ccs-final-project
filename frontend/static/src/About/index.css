@@ -13,7 +13,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  letter-spacing: 5px;
  font-weight: 500;
  font-size: 30px;
- 
+
 
 }
 .home-button:focus {outline:0;}
@@ -24,4 +24,9 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 p {
   margin-top: 10px;
+  color: black;
+
+}
+.pdiv {
+  height: 477px;
 }

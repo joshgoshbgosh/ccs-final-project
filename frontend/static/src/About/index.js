@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import './index.css';
 import Card from 'react-bootstrap/Card';
+import Carousel from 'react-bootstrap/Carousel'
 import Cookies from 'js-cookie';
-
+import dad from './images/dad.jpg';
 import family from './images/family.jpg';
+import family2 from './images/family2.jpg';
+
 
 class About extends Component {
 
@@ -11,12 +14,47 @@ class About extends Component {
     super(props);
 
   }
-render(){
+render() {
+
   return(
+
 
     <React.Fragment>
       <div className="about col-12 col-md-6 mb-5">
-         <img className="about-img"src={family} />
+      <Carousel>
+      <Carousel.Item interval={5000}>
+        <img
+          className="d-block w-100 about-img"
+          src={family}
+          alt="First slide"
+        />
+        <Carousel.Caption>
+
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item interval={5000}>
+        <img
+          className="d-block w-100 about-img"
+          src={dad}
+          alt="Third slide"
+        />
+        <Carousel.Caption>
+
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100 about-img"
+          src={family2}
+          alt="Third slide"
+        />
+        <Carousel.Caption>
+
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+
+        
          <p>
          Hello my name is Josh Lanier and this is my app GLOW.  My dad is an Alzheimer's patient.  He currently
          is getting in home care by my mom and contracted caregivers 24/7.  Glow(Generated Log Of Well-Being)
