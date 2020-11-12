@@ -1,4 +1,7 @@
+import os
+
 from rest_framework import generics, permissions
+from twilio.rest import Client
 
 from . import models
 from . import serializers
@@ -45,6 +48,37 @@ class DoseListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         prescription = self.kwargs.get('pk')
         return models.Dose.objects.filter(prescription=prescription)
+
+    def perform_create(self, serializer):
+        # import pdb; pdb.set_trace()
+
+
+        if self.request.data.get('prescription'):
+            # import pdb; pdb.set_trace()
+            account_sid = os.environ['TWILIO_ACCOUNT_SID']
+            auth_token = os.environ['TWILIO_AUTH_TOKEN']
+            client = Client(account_sid, auth_token)
+
+            message = client.messages \
+                .create(
+                     body= "has been given!",
+                     from_='+12314621486',
+                     to='+19192190994'
+                 )
+
+            print(message.sid)
+
+        serializer.save()
+
+class ProfileListAPIView(generics.ListCreateAPIView):
+    serializer_class = serializers.ProfileSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        user = self.request.user
+        return models.Profile.objects.filter(user=user)
+
+
 
 # # Create your views here.
 # class PatientListAPIView(generics.ListCreateAPIView):

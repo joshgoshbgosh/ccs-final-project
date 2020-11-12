@@ -3,14 +3,14 @@ import './index.css';
 
 import Carousel from 'react-bootstrap/Carousel'
 
-import dad from './images/dad.jpg';
+import dad from './../../images/dad.jpg';
 import family from './../../images/family.jpg';
 import family2 from './../../images/family2.jpg';
 
 
 class About extends Component {
 
-  
+
 render() {
 
   return(

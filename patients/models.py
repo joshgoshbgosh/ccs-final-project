@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from django.conf import settings
 User = get_user_model()
 
 
@@ -74,3 +74,13 @@ class Dose(models.Model):
 
     def __str__(self):
         return self.comments[:255]
+
+class Profile(models.Model):
+    # https://docs.djangoproject.com/en/3.1/topics/db/examples/one_to_one/#one-to-one-relationships
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profile")
+    avatar = models.ImageField(upload_to='profiles/', null=True)
+    display_name = models.CharField(max_length=255, null=True)
+    phone_number = models.CharField(max_length=12, blank=True)
+
+    def __str__(self):
+        return self.user.username

@@ -128,6 +128,7 @@ class Prescription extends Component {
     console.log(data);
     // that the data object that was returned and fire off a request to your twilio url (tied to a view)
     // the twilio url/view needs to fire off the text message
+    
     this.setState({displayModal: false})
   }
   removePrescription(event){
