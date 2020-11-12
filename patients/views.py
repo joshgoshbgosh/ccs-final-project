@@ -1,4 +1,8 @@
 import os
+import sys
+from accounts.models import Profile
+from django.shortcuts import get_object_or_404
+sys.path.append('accounts')
 
 from rest_framework import generics, permissions
 from twilio.rest import Client
@@ -53,31 +57,40 @@ class DoseListAPIView(generics.ListCreateAPIView):
         # import pdb; pdb.set_trace()
 
 
+
+
+
+
         if self.request.data.get('prescription'):
+
+            prescription = get_object_or_404(models.Prescription, id=self.request.data.get('prescription'))
+            comments = self.request.data.get('comments')
+            datetime = self.request.data.get('datetime')
+            number = prescription.patient.user.profile.phone_number
             # import pdb; pdb.set_trace()
+            # for y in Profile.objects.all():
+            #     phone_number = y.phone_number
             account_sid = os.environ['TWILIO_ACCOUNT_SID']
             auth_token = os.environ['TWILIO_AUTH_TOKEN']
             client = Client(account_sid, auth_token)
-
+            phone_number = Profile.phone_number
             message = client.messages \
                 .create(
-                     body= "has been given!",
+                     body= " the package has been delivered!",
                      from_='+12314621486',
-                     to='+19192190994'
+                     to = number
                  )
 
             print(message.sid)
 
         serializer.save()
 
-class ProfileListAPIView(generics.ListCreateAPIView):
-    serializer_class = serializers.ProfileSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get_queryset(self):
-        user = self.request.user
-        return models.Profile.objects.filter(user=user)
-
+# def job():
+#
+#     for y in Profile.objects.all():
+#         phone_number = y.phone_number
+#         print(phone_number)
+# job()
 
 
 # # Create your views here.

@@ -21,9 +21,3 @@ class PatientSerializer(serializers.ModelSerializer):
         model = models.Patient
         depth = 1
         fields = fields = ('id', 'image','first_name', 'last_name', 'address', 'date_of_birth', 'height', 'weight', 'gender', 'food_allergies', 'medication_allergies', 'primary_doctor', 'primary_doctor_telephone_number', 'language', 'is_bed_patient','needs_walking_device','walking_devices', 'surgeries', 'prescriptions')
-
-
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Profile
-        fields = field = ('id', 'user', 'avatar', 'display_name', 'phone_number')

@@ -11,4 +11,6 @@ urlpatterns = [
     # returns patients based on user id
     path('<int:pk>/', views.PatientDetailAPIView.as_view()),
     path('', views.PatientListAPIView.as_view()),
+
+
 ]
