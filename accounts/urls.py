@@ -5,5 +5,5 @@ from . import views
 
 
 urlpatterns = [
-    # path('<int:pk>/', views.PrescriptionListAPIView.as_view()),
+    path('profile_create/', views.ProfileListAPIView.as_view()),
 ]

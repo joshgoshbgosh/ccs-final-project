@@ -36,11 +36,9 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRegistration = this.handleRegistration.bind(this);
     this.handleError = this.handleError.bind(this);
+    this.saveProfile = this.saveProfile.bind(this);
 
   }
-
-
-
 
   async handleLogout() {
       const options = {
@@ -93,7 +91,25 @@ class App extends Component {
       Cookies.set('Authorization', `Token ${data.key}`);
       localStorage.setItem('user', JSON.stringify(data.user));
       this.setState({ isLoggedIn: true }, () => this.props.history.push('/'));
+      const profile = {phone_number: obj.phone_number}
+      this.saveProfile(profile);
+
     }
+  }
+
+  async saveProfile(obj) {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(obj),
+    };
+
+    const response = await fetch('/api/v1/accounts/profile_create/', options);
+    const data = await response.json().catch(this.handleError);
+    console.log(data);
   }
   handleError(err) {
     console.warn(err);
@@ -103,17 +119,17 @@ class App extends Component {
       <div className="container App">
       <Switch>
 
-          <Route path='/registration' component={Registration}/> //render={(props) => <Registration {...props} isLoggedIn={this.state.isLoggedIn} handleRegistration={ this.handleRegistration } />} />
-           <Route path='/login' component={Login}/> //render={(props) => <Login {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />
+          <Route path='/registration' render={(props) => <Registration {...props} isLoggedIn={this.state.isLoggedIn} handleRegistration={ this.handleRegistration } />} />
+          <Route path='/login' render={(props) => <Login {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />
 
-          <Route path='/user/patients/:id/prescriptions/add/' isLoggedIn={this.state.isLoggedIn} component={PrescriptionForm} />
-          <Route path='/user/patients/add' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
-          <Route path='/user/patients/:id' isLoggedIn={this.state.isLoggedIn} component={PatientDetail} />
-          <Route path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
+          <PrivateRoute path='/user/patients/:id/prescriptions/add/' isLoggedIn={this.state.isLoggedIn} component={PrescriptionForm} />
+          <PrivateRoute path='/user/patients/add' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
+          <PrivateRoute path='/user/patients/:id' isLoggedIn={this.state.isLoggedIn} component={PatientDetail} />
+          <PrivateRoute path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
 
-          <Route path="/menu" render={(props) => <Menu {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Menu} />
-          <Route path="/map" render={(props) => <Map {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Map} />
-          <Route path="/about" render={(props) => <About {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={About} />
+          <PrivateRoute path="/menu" render={(props) => <Menu {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Menu} />
+          <PrivateRoute path="/map" render={(props) => <Map {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Map} />
+          <PrivateRoute path="/about" render={(props) => <About {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={About} />
           <Route path="/" component={Cover} exact />
         </Switch>
       </div>

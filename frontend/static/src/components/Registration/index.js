@@ -15,9 +15,11 @@ class Registration extends Component {
 
     this.state = {
       username:'',
+      phone_number:'',
       email:'',
       password1:'',
       password2: '',
+
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -29,6 +31,8 @@ handleChange (event){
 
 
   }
+
+
 
   // async addUser(event) {
   //
@@ -84,12 +88,16 @@ handleChange (event){
                 <input type="text" placeholder="Enter Email..."name="email" value={this.state.email} onChange ={this.handleChange} />
             </div>
             <div className="form-group">
+                <label className="form-phone_number"></label>
+                <input type="tel" placeholder="(xxx) xxx-xxxx" name="phone_number" value={this.state.phone_number} onChange ={this.handleChange} />
+            </div>
+            <div className="form-group">
                 <label className="form-password1"></label>
-                <input type="text" placeholder="Enter Password..." name="password1" value={this.state.password1} onChange ={this.handleChange} />
+                <input type="password" placeholder="Enter Password..." name="password1" value={this.state.password1} onChange ={this.handleChange} />
             </div>
             <div className="form-group">
                 <label className="form-password2"></label>
-                <input type="text" placeholder="Re-enter Password..." name="password2" value={this.state.title} onChange ={this.handleChange} />
+                <input type="password" placeholder="Re-enter Password..." name="password2" value={this.state.title} onChange ={this.handleChange} />
             </div>
               <button type="submit"className="subbut">Submit</button>
           </form>

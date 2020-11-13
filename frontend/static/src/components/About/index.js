@@ -19,8 +19,8 @@ render() {
     <React.Fragment>
     <div className="photobox row">
       <div className="about col-lg-6 col-xs-12">
-      <Carousel >
-      <Carousel.Item interval={5000}>
+      <Carousel className="col-lg-12 col-xs-12">
+      <Carousel.Item interval={30000}>
         <img
           className="d-block w-100 about-img"
           src={family}
@@ -30,7 +30,7 @@ render() {
 
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={5000}>
+      <Carousel.Item interval={30000}>
         <img
           className="d-block w-100 about-img"
           src={dad}
@@ -40,7 +40,7 @@ render() {
 
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item interval={30000}>
         <img
           className="d-block w-100 about-img"
           src={family2}

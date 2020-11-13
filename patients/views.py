@@ -76,7 +76,7 @@ class DoseListAPIView(generics.ListCreateAPIView):
             phone_number = Profile.phone_number
             message = client.messages \
                 .create(
-                     body= " the package has been delivered!",
+                     body= " medication has been given!",
                      from_='+12314621486',
                      to = number
                  )

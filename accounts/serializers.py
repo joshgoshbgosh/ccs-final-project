@@ -5,10 +5,18 @@ from . import models
 
 User = get_user_model()
 
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Profile
+        fields = field = ('id', 'user', 'phone_number')
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email')
+
+    def perform_create(self, serializer):
+        import pdb; pdb.set_trace()
 
 
 # Overriding the default TokenSerializer to return user information
@@ -18,8 +26,3 @@ class TokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = TokenModel
         fields = ('key', 'user',)
-
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Profile
-        fields = field = ('id', 'user', 'phone_number')
