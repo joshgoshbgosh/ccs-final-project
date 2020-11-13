@@ -128,7 +128,7 @@ class Prescription extends Component {
     console.log(data);
     // that the data object that was returned and fire off a request to your twilio url (tied to a view)
     // the twilio url/view needs to fire off the text message
-    
+
     this.setState({displayModal: false})
   }
   removePrescription(event){
@@ -246,10 +246,32 @@ class PatientDetail extends Component {
     const prescriptions = this.state.prescriptions?.map(prescription => <Prescription key={prescription.id} prescription={prescription} />);
     return(
       <div>
-        <div>{this.state.first_name}</div>
-        <div>{this.state.last_name}</div>
+        <div className="p_detail">
+      
+        <div className="fname">{this.state.first_name}</div>
+        <div className="lname">{this.state.last_name}</div>
+        <div className="lname">{this.state.date_of_birth}</div>
+        <div className="lname">{this.state.height}</div>
+        <div className="lname">{this.state.weight}</div>
+        <div className="lname">{this.state.address}</div>
+        <div className="lname">{this.state.gender}</div>
+        <div className="lname">{this.state.medication_allergies}</div>
+        <div className="lname">{this.state.food_allergies}</div>
+        <div className="lname">{this.state.primary_doctor}</div>
+        <div className="lname">{this.state.primary_doctor_telephone_number}</div>
+        <div className="lname">{this.state.language}</div>
+        <div className="lname">{this.state.bed_patient}</div>
+        <div className="lname">{this.state.walking_devices}</div>
+        <div className="lname">{this.state.able_to_walk_alone}</div>
+        <div className="lname">{this.state.surgeries}</div>
+
+        </div>
+        <div className="meddisplay">
+        <div className="medname">
         {prescriptions}
-        <Link className="nav-link" to={`/user/patients/${id}/prescriptions/add/`}>New Prescription</Link>
+        </div>
+        </div>
+        <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>New Prescription</Link>
       </div>
     )
   }

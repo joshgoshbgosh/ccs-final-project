@@ -45,7 +45,10 @@ class Menu extends Component {
           <a className="about-ref"href="http://localhost:3000/about">ABOUT</a>
           </div>
           <div>
-          <a className="make-pat"href="http://localhost:3000/patient">CREATE PATIENT</a>
+          <a className="make-pat"href="http://localhost:3000/user/patients/add">CREATE PATIENT</a>
+          </div>
+          <div>
+          <a className="pat-det"href="http://localhost:3000/user/patients">PATIENT LIST</a>
           </div>
           <div>
           <a className="findpharm"href="http://localhost:3000/map">FIND PHARMACY</a>

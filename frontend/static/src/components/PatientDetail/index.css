@@ -1,0 +1,39 @@
+.p_detail {
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  width: 300px;
+  margin-top: 30px;
+text-align: center;
+text-decoration: underline;
+margin-bottom: 10px;
+
+
+  font-size: 30px;
+  border: solid black;
+
+}
+.fname {
+
+}
+.lname {
+
+}
+.meddisplay {
+
+  font-size: 30px;
+  border: solid black;
+  width: 300px;
+}
+.medname {
+  margin-left:20px;
+  margin-bottom: 10px;
+}
+.newmed {
+  width: 300px;
+  text-align: center;
+  font-size: 25px;
+  margin-top: 10px;
+
+}
+.newmed:hover {
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

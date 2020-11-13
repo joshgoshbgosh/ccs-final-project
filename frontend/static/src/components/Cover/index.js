@@ -5,7 +5,7 @@ import './index.css';
 
 class Cover extends Component {
 
-  
+
 
 
   render(){

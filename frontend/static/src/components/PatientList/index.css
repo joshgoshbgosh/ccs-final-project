@@ -33,6 +33,12 @@ a {
   justify-content: center;
 
 }
+.addpatient {
+  font-size: 25px;
+  width: 200px;
+
+}
+
 /* .plist_home {
   font-size: 40px;
   color:#8A1065;

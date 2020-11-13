@@ -102,18 +102,19 @@ class App extends Component {
     return (
       <div className="container App">
       <Switch>
-          <Route path='/registration' render={(props) => <Registration {...props} isLoggedIn={this.state.isLoggedIn} handleRegistration={ this.handleRegistration } />} />
-          <Route path='/login' render={(props) => <Login {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />
 
-          <PrivateRoute path='/user/patients/:id/prescriptions/add/' isLoggedIn={this.state.isLoggedIn} component={PrescriptionForm} />
-          <PrivateRoute path='/user/patients/add' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
-          <PrivateRoute path='/user/patients/:id' isLoggedIn={this.state.isLoggedIn} component={PatientDetail} />
-          <PrivateRoute path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
+          <Route path='/registration' component={Registration}/> //render={(props) => <Registration {...props} isLoggedIn={this.state.isLoggedIn} handleRegistration={ this.handleRegistration } />} />
+           <Route path='/login' component={Login}/> //render={(props) => <Login {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />
 
-          <Route path="/menu" component={Menu} />
-          <Route path="/map" component={Map} />
-          <Route path="/about" component={About} />
-          <Route path="" component={Cover} exact />
+          <Route path='/user/patients/:id/prescriptions/add/' isLoggedIn={this.state.isLoggedIn} component={PrescriptionForm} />
+          <Route path='/user/patients/add' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
+          <Route path='/user/patients/:id' isLoggedIn={this.state.isLoggedIn} component={PatientDetail} />
+          <Route path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
+
+          <Route path="/menu" render={(props) => <Menu {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Menu} />
+          <Route path="/map" render={(props) => <Map {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Map} />
+          <Route path="/about" render={(props) => <About {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={About} />
+          <Route path="/" component={Cover} exact />
         </Switch>
       </div>
     );

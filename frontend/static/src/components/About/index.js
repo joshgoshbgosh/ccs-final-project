@@ -17,8 +17,9 @@ render() {
 
 
     <React.Fragment>
-      <div className="about col-12 col-md-6 mb-5">
-      <Carousel>
+    <div className="photobox row">
+      <div className="about col-lg-6 col-xs-12">
+      <Carousel >
       <Carousel.Item interval={5000}>
         <img
           className="d-block w-100 about-img"
@@ -62,10 +63,10 @@ render() {
           to finding the closest pharmacies or care facilities no matter where you are.  Glow is designed to
           help equip and bring peace of mind to the everyday family caregiver.
          </p>
-
+          <a className="home-button" href="http://localhost:3000/menu">HOME</a>
        </div>
-            <a className="home-button" href="http://localhost:3000/menu">HOME</a>
 
+      </div>
     </React.Fragment>
   )
 };
