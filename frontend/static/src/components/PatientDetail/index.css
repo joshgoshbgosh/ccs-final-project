@@ -11,6 +11,11 @@ margin-bottom: 10px;
   border: solid black;
 
 }
+
+.boxs {
+  display: flex;
+ justify-content: space-between;
+}
 .fname {
 
 }
@@ -21,11 +26,14 @@ margin-bottom: 10px;
 
   font-size: 30px;
   border: solid black;
-  width: 300px;
+  width: 400px;
+
 }
 .medname {
   margin-left:20px;
   margin-bottom: 10px;
+
+
 }
 .newmed {
   width: 300px;
@@ -35,5 +43,5 @@ margin-bottom: 10px;
 
 }
 .newmed:hover {
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-decoration: underline;
 }

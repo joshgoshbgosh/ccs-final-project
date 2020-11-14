@@ -44,6 +44,15 @@ class PrescriptionListAPIView(generics.ListCreateAPIView):
         patient = self.kwargs.get('pk')
         return models.Prescription.objects.filter(patient=patient)
 
+class PrescriptionHistoryListAPIView(generics.ListCreateAPIView):
+    serializer_class = serializers.DoseSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        prescription = self.kwargs.get('pk')
+        return models.Dose.objects
+
+
 
 class DoseListAPIView(generics.ListCreateAPIView):
     serializer_class = serializers.DoseSerializer
@@ -84,6 +93,10 @@ class DoseListAPIView(generics.ListCreateAPIView):
             print(message.sid)
 
         serializer.save()
+
+
+
+
 
 # def job():
 #

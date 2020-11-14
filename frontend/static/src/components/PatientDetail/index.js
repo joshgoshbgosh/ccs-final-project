@@ -131,16 +131,18 @@ class Prescription extends Component {
 
     this.setState({displayModal: false})
   }
-  removePrescription(event){
-  }
+   async removePrescription(prescription){
+
+
+}
   render() {
     return(
       <div>
-        <div>{this.props.prescription.medication_name}</div>
+        <div className="medicine_name">{this.props.prescription.medication_name}</div>
         {/*<Link className="nav-link" to={}>Edit</Link>*/}
         {/*<button className="btn btn-link" >Remove</button>*/}
-        <button type="button" className="btn btn-link" >Remove</button>
-        <Button variant="primary" onClick={() => this.setState({displayModal: true})}>Add Dose</Button>
+        <button type="button" className="btn btn-link" onClick={this.removePrescription}>Remove</button>
+        <Button variant="primary" onClick={() => this.setState({displayModal: true})}>Give Medication</Button>
         <Modal show={this.state.displayModal} onHide={() => this.setState({displayModal: false})}>
           <Modal.Header closeButton>
             <Modal.Title>{this.props.prescription.medication_name.toUpperCase()}</Modal.Title>
@@ -246,8 +248,9 @@ class PatientDetail extends Component {
     const prescriptions = this.state.prescriptions?.map(prescription => <Prescription key={prescription.id} prescription={prescription} />);
     return(
       <div>
+      <div className="boxs col-lg-12 col-xs-12">
         <div className="p_detail">
-      
+
         <div className="fname">{this.state.first_name}</div>
         <div className="lname">{this.state.last_name}</div>
         <div className="lname">{this.state.date_of_birth}</div>
@@ -270,10 +273,38 @@ class PatientDetail extends Component {
         <div className="medname">
         {prescriptions}
         </div>
+        <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>Create New Prescription</Link>
         </div>
-        <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>New Prescription</Link>
+
+        </div>
       </div>
     )
   }
+}
+
+ class PrescriptionIntakeHistory extends Component {
+   constructor(props){
+     super(props);
+     this.state = {}
+
+      this.fetchPrescriptionIntakeHistory = this.fetchPrescriptionIntakeHistory.bind(this)
+    }
+    componentDidMount() {
+      this.fetchPrescriptionIntakeHistory();
+    }
+    async fetchPrescriptionIntakeHistory() {
+      const prescription_id = this.props.prescription.id
+      const id = this.props.match.params.history.id;
+      const response = await fetch(`/api/v1/user/patients/${prescription_id}/doses/`).catch(this.handleError);
+      const data = await response.json().catch(this.handleError);
+      this.setState({...data});
+      console.log(data);
+    }
+    render(){
+      const id = this.props.params.history.id;
+      return(
+        <div>{this.state.prescription}</div>
+      )
+    }
 }
 export default PatientDetail;

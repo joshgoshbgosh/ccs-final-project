@@ -17,6 +17,7 @@ import PatientForm from './../PatientForm';
 import PatientList from './../PatientList';
 import PatientDetail from './../PatientDetail';
 
+import MedicationHistory from './../MedicationHistory';
 import PrescriptionForm from './../PrescriptionForm';
 
 import About from './../About';
@@ -90,7 +91,7 @@ class App extends Component {
       // https://scotch.io/@PratyushB/local-storage-vs-session-storage-vs-cookie
       Cookies.set('Authorization', `Token ${data.key}`);
       localStorage.setItem('user', JSON.stringify(data.user));
-      this.setState({ isLoggedIn: true }, () => this.props.history.push('/'));
+      this.setState({ isLoggedIn: true }, () => this.props.history.push('/menu'));
       const profile = {phone_number: obj.phone_number}
       this.saveProfile(profile);
 
@@ -126,7 +127,7 @@ class App extends Component {
           <PrivateRoute path='/user/patients/add' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
           <PrivateRoute path='/user/patients/:id' isLoggedIn={this.state.isLoggedIn} component={PatientDetail} />
           <PrivateRoute path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
-
+          <PrivateRoute path='/user/medicationHistory/:id' isLoggedIn={this.state.isLoggedIn} component={MedicationHistory} />
           <PrivateRoute path="/menu" render={(props) => <Menu {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Menu} />
           <PrivateRoute path="/map" render={(props) => <Map {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Map} />
           <PrivateRoute path="/about" render={(props) => <About {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={About} />
