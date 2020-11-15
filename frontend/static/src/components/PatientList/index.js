@@ -10,7 +10,7 @@ class PatientCard extends Component {
         <Card>
           <Card.Img variant="top" src={patient.image}/>
           <Card.Body>
-            <Card.Title>{`${patient.first_name.toUpperCase()} ${patient.last_name.toUpperCase()}`}</Card.Title>
+            <Card.Title>{`${patient.first_name.toUpperCase()}  ${patient.last_name.toUpperCase()}`}</Card.Title>
           </Card.Body>
         </Card>
       </Link>
@@ -38,8 +38,14 @@ class PatientList extends Component {
     const patients = this.state.patientList.map(patient => <PatientCard key={patient.id} patient={patient}/>);
     return(
       <React.Fragment>
+      <div className="top_bar">
+      <p className="pDtail">PATIENT LIST</p>
+      
+      </div>
         <Link className="addpatient nav-link" to={`/user/patients/add`}>Create A New Patient</Link>
         {patients}
+        <div className="bottom_bar">
+        </div>
       </React.Fragment>
     )
   }

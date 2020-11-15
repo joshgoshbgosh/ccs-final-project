@@ -172,6 +172,48 @@ class Prescription extends Component {
     )
   }
 }
+
+class PrescriptionDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+    // this.deleteMed = this.deleteMed.bind(this);
+    // this.editMed = this.editMed.bind(this);
+    this.fetchPrescriptionDetail = this.fetchPrescriptionDetail.bind(this);
+  }
+  componentDidMount() {
+    this.fetchPrescriptionDetail();
+  }
+  async fetchPrescriptionDetail() {
+    const id = this.props.match.params.id;
+    const response = await fetch(`/api/v1/user/patients/${id}/prescriptions/`).catch(this.handleError);
+    const data = await response.json().catch(this.handleError);
+    this.setState({...data});
+    console.log(data);
+  }
+
+  render() {
+    return(
+
+      <div>
+        <div className="brand">Brand Name - {this.state.brand_name}</div>
+        <div className="med_name">{this.state.medication_name}</div>
+        <div className="drections">{this.state.directions}</div>
+        <div className="qnty">{this.state.quantity}</div>
+        <div className="refill">{this.state.refills}</div>
+        <div className="pharm_number">{this.state.pharmacy_number}</div>
+        <div className="rxnum">{this.state.rx}</div>
+        <div className="doc_prescriber">{this.state.prescriber}</div>
+        <div className="as_need">{this.state.take_as_needed}</div>
+        <div className="hour_frequent">{this.state.hourly_frequency}</div>
+      </div>
+    )
+  }
+}
+
+
+
+
 class PatientDetail extends Component {
   constructor(props) {
     super(props);
@@ -243,38 +285,52 @@ class PatientDetail extends Component {
   //     this.setState({prescriptions});
   //   }
   render() {
+    const prescriptionDetail = this.props.match.params;
     const id = this.props.match.params.id;
     console.log(this.state.prescriptions)
     const prescriptions = this.state.prescriptions?.map(prescription => <Prescription key={prescription.id} prescription={prescription} />);
     return(
       <div>
+     <div className="top_bar">
+     <p className="pDtail">PATIENT DETAILS</p>
+
+     </div>
+
+
       <div className="boxs col-lg-12 col-xs-12">
         <div className="p_detail">
 
-        <div className="fname">{this.state.first_name}</div>
-        <div className="lname">{this.state.last_name}</div>
-        <div className="lname">{this.state.date_of_birth}</div>
-        <div className="lname">{this.state.height}</div>
-        <div className="lname">{this.state.weight}</div>
-        <div className="lname">{this.state.address}</div>
-        <div className="lname">{this.state.gender}</div>
-        <div className="lname">{this.state.medication_allergies}</div>
-        <div className="lname">{this.state.food_allergies}</div>
-        <div className="lname">{this.state.primary_doctor}</div>
-        <div className="lname">{this.state.primary_doctor_telephone_number}</div>
-        <div className="lname">{this.state.language}</div>
-        <div className="lname">{this.state.bed_patient}</div>
-        <div className="lname">{this.state.walking_devices}</div>
-        <div className="lname">{this.state.able_to_walk_alone}</div>
-        <div className="lname">{this.state.surgeries}</div>
+          <div className="fname">First Name - {this.state.first_name}</div>
+          <div className="lname">Last Name - {this.state.last_name}</div>
+          <div className="date_of_birth">DOB - {this.state.date_of_birth}</div>
+          <div className="height">Height - {this.state.height}</div>
+          <div className="weight">Weight - {this.state.weight}</div>
+          <div className="address">Address - {this.state.address}</div>
+          <div className="gender">Gender - {this.state.gender}</div>
+          <div className="medsallergy">Medical Allergy - {this.state.medication_allergies}</div>
+          <div className="foodsallergy">Food Allergy - {this.state.food_allergies}</div>
+          <div className="primdoct">Primary Doctor - {this.state.primary_doctor}</div>
+          <div className="doctele">Primary Dr Phone Number - {this.state.primary_doctor_telephone_number}</div>
+          <div className="language">Language - {this.state.language}</div>
+          <div className="bedpat">{this.state.bed_patient}</div>
+          <div className="walkdevice">Walking Device - {this.state.walking_devices}</div>
+          <div className="walkalone">{this.state.able_to_walk_alone}</div>
+          <div className="surgery">History Of Surgery - {this.state.surgeries}</div>
 
         </div>
         <div className="meddisplay">
-        <div className="medname">
-        {prescriptions}
+          <div className="medname">
+            {prescriptions}
+          </div>
+          <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>Add New Prescription</Link>
+          <Link className="med_history" to={`/api/v1/user/patients/${id}/prescriptionHistory/`}>View Schedule History</Link>
         </div>
-        <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>Create New Prescription</Link>
-        </div>
+
+
+      </div>
+      <Link className="return_link" to={'/user/patients/'}>Return To Patient List</Link>
+            
+        <div className="bottom_bar">
 
         </div>
       </div>
@@ -282,29 +338,5 @@ class PatientDetail extends Component {
   }
 }
 
- class PrescriptionIntakeHistory extends Component {
-   constructor(props){
-     super(props);
-     this.state = {}
 
-      this.fetchPrescriptionIntakeHistory = this.fetchPrescriptionIntakeHistory.bind(this)
-    }
-    componentDidMount() {
-      this.fetchPrescriptionIntakeHistory();
-    }
-    async fetchPrescriptionIntakeHistory() {
-      const prescription_id = this.props.prescription.id
-      const id = this.props.match.params.history.id;
-      const response = await fetch(`/api/v1/user/patients/${prescription_id}/doses/`).catch(this.handleError);
-      const data = await response.json().catch(this.handleError);
-      this.setState({...data});
-      console.log(data);
-    }
-    render(){
-      const id = this.props.params.history.id;
-      return(
-        <div>{this.state.prescription}</div>
-      )
-    }
-}
 export default PatientDetail;

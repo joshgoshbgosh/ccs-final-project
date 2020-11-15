@@ -1,4 +1,13 @@
-
+.top_bar {
+  background-color:#8A1065;
+  height: 70px;
+}
+.bottom_bar {
+  background-color:#8A1065;
+  height: 70px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
 
 .card {
   display:flex;
@@ -8,8 +17,8 @@
 
 
 
-  margin-right: 160px;
-  margin-left: 10px;
+  margin-right: 155px;
+  margin-left: 100px;
   margin-top: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 

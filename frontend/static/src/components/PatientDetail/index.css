@@ -1,13 +1,44 @@
+
+body {
+
+}
+.top_bar {
+  background-color:#8A1065;
+  height: 70px;
+}
+.bottom_bar {
+  background-color:#8A1065;
+  height: 70px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+.return_link {
+  font-size: 25px;
+  margin-left: 10px;
+  margin-top: 5px;
+  
+}
+.return_link:hover {
+  text-decoration: underline;
+}
+.pDtail {
+  color: white;
+  font-size: 40px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  margin-left: 15px;
+  padding-top: 4px;
+}
 .p_detail {
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-  width: 300px;
-  margin-top: 30px;
-text-align: center;
+  width: 500px;
+  margin-top: 50px;
+text-align: left;
 text-decoration: underline;
 margin-bottom: 10px;
 
 
-  font-size: 30px;
+  font-size: 20px;
   border: solid black;
 
 }
@@ -23,11 +54,12 @@ margin-bottom: 10px;
 
 }
 .meddisplay {
-
+  margin-top: 50px;
   font-size: 30px;
   border: solid black;
-  width: 400px;
-
+  width: 500px;
+  height: 300px;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 .medname {
   margin-left:20px;
@@ -41,6 +73,13 @@ margin-bottom: 10px;
   font-size: 25px;
   margin-top: 10px;
 
+}
+.med_history {
+  font-size: 25px;
+  margin-left:34px;
+}
+.med_history:hover {
+  text-decoration: underline;
 }
 .newmed:hover {
   text-decoration: underline;
