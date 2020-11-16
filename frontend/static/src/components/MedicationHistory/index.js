@@ -38,10 +38,11 @@ class MedicationHistory extends Component {
          <p className="pDtail">Medication History</p>
          </div>
          <div>
-         <Link className="pdtail_link" to={'/user/patients/'}>Return To Patient Detail</Link>
+
          </div>
-         <div>{text}</div>
-         <div className="bottom_bar">
+         <div className= 'col-lg-12 col-xs-12 d-block w-100'>{text}</div>
+         <div className="bottom_bar ">
+         <Link className="pdtail_link" to={`/user/patients/${this.props.match.params.id}/`}>Return To Patient Detail</Link>
          </div>
 
          </div>

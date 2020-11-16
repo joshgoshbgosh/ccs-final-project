@@ -91,7 +91,7 @@ class App extends Component {
       // https://scotch.io/@PratyushB/local-storage-vs-session-storage-vs-cookie
       Cookies.set('Authorization', `Token ${data.key}`);
       localStorage.setItem('user', JSON.stringify(data.user));
-      this.setState({ isLoggedIn: true }, () => this.props.history.push('/menu'));
+      this.setState({ isLoggedIn: true }, () => this.props.history.push('/user/patient/'));
       const profile = {phone_number: obj.phone_number}
       this.saveProfile(profile);
 

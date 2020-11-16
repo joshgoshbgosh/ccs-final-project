@@ -48,12 +48,12 @@ async handleSubmit(event){
       body: formData,
   };
   await fetch(`/api/v1/user/patients/${id}/prescriptions/`, options);
-  this.props.history.push(`/user/patients/${id}`);
+  this.props.history.push(`/user/patient/${id}/prescriptions/`);
 };
 render() {
   return(
       <React.Fragment>
-      <div className="top_bar">
+      <div className="col-lg-12 col-xs-12 top_bar">
       <p className="medform-label">ADD PRESCRIPTION</p>
 
       </div>
@@ -129,7 +129,7 @@ render() {
           </div>
         </form>
         </div>
-        <div className="bottom_bar">
+        <div className="bottom_bar col-lg-12 col-xs-12 ">
 
 
         </div>

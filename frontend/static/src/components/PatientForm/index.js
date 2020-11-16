@@ -66,6 +66,10 @@ class PatientForm extends Component {
 render() {
     return (
       <React.Fragment>
+      <div className="top_bar col-lg-12 col-xs-12 ">
+      <p className="list-label">PATIENT FORM</p>
+
+      </div>
        <div className="row">
         <form className="news-form col-lg-6 col-xs-12" onSubmit={this.handleSubmit}>
           <div className="patient_form">
@@ -184,6 +188,8 @@ render() {
                 </div>
               </div>
           </form>
+        </div>
+        <div className="bottom_bar col-lg-12 col-xs-12 ">
         </div>
       </React.Fragment>
    )

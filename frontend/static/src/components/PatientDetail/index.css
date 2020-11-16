@@ -46,7 +46,9 @@ margin-bottom: 10px;
 
 .boxs {
   display: flex;
+  flex-wrap: wrap;
  justify-content: space-between;
+
 }
 .fname {
 
@@ -65,6 +67,7 @@ margin-bottom: 10px;
 .medname {
   margin-left:20px;
   margin-bottom: 10px;
+
 
 
 }

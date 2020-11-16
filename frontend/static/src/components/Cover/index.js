@@ -32,10 +32,10 @@ class Cover extends Component {
 
     </div>
     <div className="account">
-      <a className="create" href="http://localhost:3000/registration">CREATE ACCOUNT</a>
+      <a className="create" href="/registration">CREATE ACCOUNT</a>
     </div>
     <div className="logn">
-      <a className="login"href="http://localhost:3000/login">LOGIN</a>
+      <a className="login"href="/login">LOGIN</a>
     </div>
     </div>
     </div>

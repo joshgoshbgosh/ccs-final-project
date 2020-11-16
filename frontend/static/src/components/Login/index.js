@@ -52,7 +52,7 @@ class Login extends Component {
 
 render() {
   if(this.props.isLoggedIn) {
-      return <Redirect to="/" />
+      return <Redirect to="/user/patients" />
     }
   return (
     <React.Fragment>
@@ -83,7 +83,7 @@ render() {
         </div>
         <div className="pass-lab form-group">
           <label className="form-password1"></label>
-          <input type="text" placeholder="Enter Password..." name="password" value={this.state.password} onChange ={this.handleChange} />
+          <input type="password" placeholder="Enter Password..." name="password" value={this.state.password} onChange ={this.handleChange} />
         </div>
         <button type="submit"className="subbut">SUBMIT</button>
       </form>

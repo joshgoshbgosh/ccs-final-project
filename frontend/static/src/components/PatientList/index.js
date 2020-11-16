@@ -38,13 +38,13 @@ class PatientList extends Component {
     const patients = this.state.patientList.map(patient => <PatientCard key={patient.id} patient={patient}/>);
     return(
       <React.Fragment>
-      <div className="top_bar">
+      <div className="top_bar col-lg-12 col-xs-12 ">
       <p className="list-label">PATIENT LIST</p>
 
       </div>
         <Link className="addpatient nav-link" to={`/user/patients/add`}>Create A New Patient</Link>
         {patients}
-        <div className="bottom_bar">
+        <div className="bottom_bar col-lg-12 col-xs-12 ">
         </div>
       </React.Fragment>
     )

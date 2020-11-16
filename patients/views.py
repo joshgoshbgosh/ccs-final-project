@@ -65,11 +65,6 @@ class DoseListAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         # import pdb; pdb.set_trace()
 
-
-
-
-
-
         if self.request.data.get('prescription'):
 
             prescription = get_object_or_404(models.Prescription, id=self.request.data.get('prescription'))
@@ -95,6 +90,9 @@ class DoseListAPIView(generics.ListCreateAPIView):
         serializer.save()
 
 
+class PrescriptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Prescription.objects.all()
+    serializer_class = serializers.PrescriptionSerializer
 
 
 
@@ -137,9 +135,7 @@ class DoseListAPIView(generics.ListCreateAPIView):
 #         patient = self.kwargs.get('pk')
 #         return Prescription.objects.filter(patient=patient)
 #
-# class PrescriptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Prescription.objects.all()
-#     serializer_class = PrescriptionSerializer
+
 #
 # class DoseListAPIView(generics.ListCreateAPIView):
 #     serializer_class = DoseSerializer

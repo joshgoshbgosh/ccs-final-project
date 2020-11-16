@@ -59,7 +59,7 @@ handleChange (event){
 
       render() {
         if(this.props.isLoggedIn) {
-            return <Redirect to="/" />
+            return <Redirect to="/user/patients" />
           }
         return(
           <React.Fragment>

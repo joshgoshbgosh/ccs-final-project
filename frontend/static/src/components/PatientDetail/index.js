@@ -3,6 +3,7 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './index.css';
+
 // // import Card from 'react-bootstrap/Card';
 // class Prescription extends Component {       //this is displaying patient meds on display page
 //   constructor(props) {
@@ -94,10 +95,10 @@ class Prescription extends Component {
     this.state = {
       comments: '',
       datetime: '',
+      // prescriptions: [],
       displayModal: false,
     }
     this.saveDose = this.saveDose.bind(this);
-    this.removePrescription = this.removePrescription.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleError = this.handleError.bind(this);
   }
@@ -106,6 +107,9 @@ class Prescription extends Component {
   }
   handleError(err) {
     console.warn(err);
+  }
+  componentDidMount(){
+    // this.removePrescription();
   }
   async saveDose() {
     const prescription_id = this.props.prescription.id
@@ -131,17 +135,16 @@ class Prescription extends Component {
 
     this.setState({displayModal: false})
   }
-   async removePrescription(prescription){
 
 
-}
+
   render() {
     return(
       <div>
         <div className="medicine_name">{this.props.prescription.medication_name}</div>
         {/*<Link className="nav-link" to={}>Edit</Link>*/}
         {/*<button className="btn btn-link" >Remove</button>*/}
-        <button type="button" className="btn btn-link" onClick={this.removePrescription}>Remove</button>
+        <button type="button" className="btn btn-link" onClick={() => this.props.removePrescription(this.props.prescription)}>Remove</button>
         <Button variant="primary" onClick={() => this.setState({displayModal: true})}>Give Medication</Button>
         <Modal show={this.state.displayModal} onHide={() => this.setState({displayModal: false})}>
           <Modal.Header closeButton>
@@ -192,6 +195,7 @@ class PrescriptionDetail extends Component {
     console.log(data);
   }
 
+
   render() {
     return(
 
@@ -221,10 +225,33 @@ class PatientDetail extends Component {
     // this.deleteMed = this.deleteMed.bind(this);
     // this.editMed = this.editMed.bind(this);
     this.fetchPatientDetail = this.fetchPatientDetail.bind(this);
+    this.removePrescription = this.removePrescription.bind(this);
   }
   componentDidMount() {
     this.fetchPatientDetail();
   }
+
+  async removePrescription(prescription){
+    const options = {
+          method: 'DELETE',
+          headers:{
+            'X-CSRFToken': Cookies.get('csrftoken'),
+            'Content-Type': 'application/json'
+          },
+        }
+        const handleError = (err) => console.warn(err);
+        const response = await fetch(`/api/v1/user/patients/prescriptions/${prescription.id}/`, options)
+        const data = await response.json().catch(handleError);
+        // console.log('data', data);
+        const prescriptions = [...this.state.prescriptions];
+        const index = prescriptions.indexOf(prescription);
+        prescriptions.splice(index, 1);
+        // prescriptions don't live on this component's state
+        this.setState({prescriptions});
+
+
+      }
+
   async fetchPatientDetail() {
     const id = this.props.match.params.id;
     const response = await fetch(`/api/v1/user/patients/${id}/`).catch(this.handleError);
@@ -243,7 +270,7 @@ class PatientDetail extends Component {
   //     }
   //     const handleError = (err) => console.warn(err);
   //
-  //     const response = await fetch(`/api/v1/patients/prescription/${prescription.id}/`, options)
+  //     const response = await fetch(`/api/v1/user/prescription/${prescription.id}/`, options)
   //     const data = await response.json().catch(handleError);
   //     console.log('data', data);
   //     const prescriptions = [...this.state.prescriptions];
@@ -276,7 +303,7 @@ class PatientDetail extends Component {
   //           body:formData,
   //     }
   //     const handleError = (err) => console.warn(err);
-  //     const response = await fetch(`/api/v1/patients/prescription/${id}/`, options);
+  //     const response = await fetch(`/api/v1/user/patients/prescription/${id}/`, options);
   //     const data = await response.json().catch(handleError)
   //
   //     const prescriptions = [...this.state.prescriptions];
@@ -288,10 +315,10 @@ class PatientDetail extends Component {
     const prescriptionDetail = this.props.match.params;
     const id = this.props.match.params.id;
     console.log(this.state.prescriptions)
-    const prescriptions = this.state.prescriptions?.map(prescription => <Prescription key={prescription.id} prescription={prescription} />);
+    const prescriptions = this.state.prescriptions?.map(prescription => <Prescription key={prescription.id} prescription={prescription} removePrescription={this.removePrescription}/>);
     return(
       <div>
-     <div className="top_bar">
+     <div className="top_bar col-lg-12 col-xs-12 ">
      <p className="pDtail">PATIENT DETAILS</p>
 
      </div>
@@ -321,16 +348,18 @@ class PatientDetail extends Component {
         <div className="meddisplay">
           <div className="medname">
             {prescriptions}
+
           </div>
+
           <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>Add New Prescription</Link>
-          <Link className="med_history" to={`/api/v1/user/medicationHistory/${id}`}>View Schedule History</Link>
+          <Link className="med_history nav-link" to={`/user/medicationHistory/${id}/`}>View Schedule History</Link>
         </div>
 
 
       </div>
       <Link className="return_link" to={'/user/patients/'}>Return To Patient List</Link>
 
-        <div className="bottom_bar">
+        <div className="bottom_bar col-lg-12 col-xs-12 ">
 
         </div>
       </div>
