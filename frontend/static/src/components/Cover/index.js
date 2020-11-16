@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
+import bgimg from './../../images/bgimg.jpg';
 
 
 

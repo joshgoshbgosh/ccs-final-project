@@ -6,6 +6,26 @@
 
 .home-button {
   margin-top: 20px;
-  margin-right: 20px;
+  margin-right: 40px;
   text-decoration: underline;
+}
+
+.map_bar_top {
+  background-color:#8A1065;
+  height: 70px;
+}
+.bottom_bar {
+  background-color:#8A1065;
+  height: 70px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+.map-label {
+  color: white;
+  font-size: 40px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  margin-left: 15px;
+  padding-top: 4px;
+  border: none;
 }

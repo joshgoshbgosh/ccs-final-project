@@ -17,43 +17,23 @@ render() {
 
 
     <React.Fragment>
+    <div className="top_bar">
+    <p className="about-label">ABOUT</p>
+
+    </div>
     <div className="photobox row">
       <div className="about col-lg-6 col-xs-12">
-      <Carousel className="col-lg-12 col-xs-12">
-      <Carousel.Item interval={30000}>
+
         <img
           className="d-block w-100 about-img"
           src={family}
           alt="First slide"
         />
-        <Carousel.Caption>
-
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={30000}>
-        <img
-          className="d-block w-100 about-img"
-          src={dad}
-          alt="Third slide"
-        />
-        <Carousel.Caption>
-
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={30000}>
-        <img
-          className="d-block w-100 about-img"
-          src={family2}
-          alt="Third slide"
-        />
-        <Carousel.Caption>
-
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
 
 
-         <p>
+
+
+         <p className="d-block w-100">
          Hello my name is Josh Lanier and this is my app GLOW.  My dad is an Alzheimer's patient.  He currently
          is getting in home care by my mom and contracted caregivers 24/7.  Glow(Generated Log Of Well-Being)
          is an app designed from seeing the struggle of family members taking care of their loved ones.
@@ -65,6 +45,11 @@ render() {
          </p>
           <a className="home-button" href="http://localhost:3000/menu">HOME</a>
        </div>
+
+      </div>
+      <div className="my d-none d-lg-block">MY</div>
+      <div className="story d-none d-lg-block">STORY</div>
+      <div className="bottom_bar">
 
       </div>
     </React.Fragment>

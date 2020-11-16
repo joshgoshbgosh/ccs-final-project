@@ -53,6 +53,10 @@ async handleSubmit(event){
 render() {
   return(
       <React.Fragment>
+      <div className="top_bar">
+      <p className="medform-label">ADD PRESCRIPTION</p>
+
+      </div>
       <div className="row">
         <form className="col-lg-12 col-xs-12 med-form" onSubmit={this.handleSubmit} >
           <div className="form-group">
@@ -124,6 +128,10 @@ render() {
           <button type="submit"className="sub btn btn-dark">Submit</button>
           </div>
         </form>
+        </div>
+        <div className="bottom_bar">
+
+
         </div>
       </React.Fragment>
     )

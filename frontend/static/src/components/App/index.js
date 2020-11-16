@@ -128,9 +128,9 @@ class App extends Component {
           <PrivateRoute path='/user/patients/:id' isLoggedIn={this.state.isLoggedIn} component={PatientDetail} />
           <PrivateRoute path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
           <PrivateRoute path='/user/medicationHistory/:id' isLoggedIn={this.state.isLoggedIn} component={MedicationHistory} />
-          <PrivateRoute path="/menu" render={(props) => <Menu {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Menu} />
-          <PrivateRoute path="/map" render={(props) => <Map {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={Map} />
-          <PrivateRoute path="/about" render={(props) => <About {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />//component={About} />
+          <Route path="/menu" component={Menu} />
+          <Route path="/map" component={Map} />
+          <Route path="/about" component={About} />
           <Route path="/" component={Cover} exact />
         </Switch>
       </div>

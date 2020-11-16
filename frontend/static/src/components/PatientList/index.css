@@ -23,6 +23,15 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
+.list-label {
+  color: white;
+  font-size: 40px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  margin-left: 15px;
+  padding-top: 4px;
+  border: none;
+}
 .card-img-top {
   width: 100% ;
   height: 100%;

@@ -38,3 +38,12 @@ color: #014FF1;
 
 
 }
+.medform-label {
+  color: white;
+  font-size: 40px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  margin-left: 15px;
+  padding-top: 4px;
+  border: none;
+}

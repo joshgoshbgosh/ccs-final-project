@@ -323,13 +323,13 @@ class PatientDetail extends Component {
             {prescriptions}
           </div>
           <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>Add New Prescription</Link>
-          <Link className="med_history" to={`/api/v1/user/patients/${id}/prescriptionHistory/`}>View Schedule History</Link>
+          <Link className="med_history" to={`/api/v1/user/medicationHistory/${id}`}>View Schedule History</Link>
         </div>
 
 
       </div>
       <Link className="return_link" to={'/user/patients/'}>Return To Patient List</Link>
-            
+
         <div className="bottom_bar">
 
         </div>

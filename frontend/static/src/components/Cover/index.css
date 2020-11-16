@@ -1,5 +1,7 @@
 body {
   height: 100%;
+  
+
 
 }
 .cover_container {
@@ -12,7 +14,7 @@ body {
     margin-top: 40px;
     text-transform: uppercase;
     font-family: verdana;
-    font-size: 135px;
+    font-size: 50px;
     font-weight: 700;
     color: #f5f5f5;
     text-shadow: 1px 1px 1px #8A1065,

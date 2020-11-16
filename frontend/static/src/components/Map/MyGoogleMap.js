@@ -126,6 +126,9 @@ class MyGoogleMap extends Component {
 
         return (
             <Wrapper>
+            <div className="map_bar_top">
+            <p className="map-label">MAP</p>
+            </div>
                 {mapApiLoaded && (
                     <div>
                         <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
@@ -149,6 +152,7 @@ class MyGoogleMap extends Component {
                     onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
                 >
 
+
                     <Marker
                         text={this.state.address}
                         lat={this.state.lat}
@@ -157,6 +161,7 @@ class MyGoogleMap extends Component {
 
 
                 </GoogleMapReact>
+
                 <div className="bottom">
                 <div className="info-wrapper">
                     <div className="map-details">Latitude: <span>{this.state.lat}</span>, Longitude: <span>{this.state.lng}</span></div>
@@ -168,7 +173,9 @@ class MyGoogleMap extends Component {
                 </div>
                 </div>
 
+                <div className="bottom_bar">
 
+                </div>
             </Wrapper >
         );
     }

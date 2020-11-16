@@ -39,8 +39,8 @@ class PatientList extends Component {
     return(
       <React.Fragment>
       <div className="top_bar">
-      <p className="pDtail">PATIENT LIST</p>
-      
+      <p className="list-label">PATIENT LIST</p>
+
       </div>
         <Link className="addpatient nav-link" to={`/user/patients/add`}>Create A New Patient</Link>
         {patients}
