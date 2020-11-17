@@ -13,8 +13,8 @@ urlpatterns = [
     path('<int:pk>/', views.PatientDetailAPIView.as_view()),
     path('', views.PatientListAPIView.as_view()),
 
-    
-    path('prescriptions/<int:pk>/', views.PrescriptionDetailAPIView.as_view()),
 
+    path('prescriptions/<int:pk>/', views.PrescriptionDetailAPIView.as_view()),
+    
 
 ]

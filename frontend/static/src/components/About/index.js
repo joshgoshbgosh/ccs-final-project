@@ -16,9 +16,9 @@ render() {
   return(
 
 
-    <React.Fragment>
+    <div id="about">
     <div className="top_bar">
-    <p className="about-label">ABOUT</p>
+      <p className="about-label">ABOUT</p>
 
     </div>
     <div className="photobox row">
@@ -52,7 +52,7 @@ render() {
       <div className="bottom_bar">
 
       </div>
-    </React.Fragment>
+    </div>
   )
 };
 

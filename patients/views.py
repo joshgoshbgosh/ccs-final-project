@@ -96,8 +96,6 @@ class PrescriptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
-    
-
 
 
 # def job():

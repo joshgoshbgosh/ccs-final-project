@@ -5,8 +5,8 @@ import Cookies from 'js-cookie';
 
 import PrivateRoute from './../PrivateRoute';
 
-import Menu from './../Menu';
-import Cover from './../Cover';
+// import Menu from './../Menu';
+import Header from './../Header';
 
 import Login from './../Login';
 import Registration from './../Registration';
@@ -20,6 +20,7 @@ import PatientDetail from './../PatientDetail';
 import MedicationHistory from './../MedicationHistory';
 import PrescriptionForm from './../PrescriptionForm';
 import PrescriptionEdit from './../PrescriptionEdit';
+import PrescriptionDetail from './../PrescriptionDetail';
 
 import About from './../About';
 
@@ -92,7 +93,7 @@ class App extends Component {
       // https://scotch.io/@PratyushB/local-storage-vs-session-storage-vs-cookie
       Cookies.set('Authorization', `Token ${data.key}`);
       localStorage.setItem('user', JSON.stringify(data.user));
-      this.setState({ isLoggedIn: true }, () => this.props.history.push('/user/patient/'));
+      this.setState({ isLoggedIn: true }, () => this.props.history.push('/user/patients'));
       const profile = {phone_number: obj.phone_number}
       this.saveProfile(profile);
 
@@ -118,7 +119,9 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="container App">
+      <React.Fragment>
+      <Header isLoggedIn={this.state.isLoggedIn} handleLogout={ this.handleLogout } />
+      <div className="container">
       <Switch>
 
           <Route path='/registration' render={(props) => <Registration {...props} isLoggedIn={this.state.isLoggedIn} handleRegistration={ this.handleRegistration } />} />
@@ -126,18 +129,18 @@ class App extends Component {
 
           <PrivateRoute path='/prescription/:id' isLoggedIn={this.state.isLoggedIn} component={PrescriptionEdit} />
           <PrivateRoute path='/user/patients/:id/prescriptions/add/' isLoggedIn={this.state.isLoggedIn} component={PrescriptionForm} />
+          <PrivateRoute path='/user/prescriptiondetail/:id'isLoggedIn={this.state.isLoggedIn} component={PrescriptionDetail} />
 
           <PrivateRoute path='/user/patients/add' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
           <PrivateRoute path='/user/patients/:id' isLoggedIn={this.state.isLoggedIn} component={PatientDetail} />
           <PrivateRoute path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
           <PrivateRoute path='/user/medicationHistory/:id' isLoggedIn={this.state.isLoggedIn} component={MedicationHistory} />
 
-          <Route path="/menu" component={Menu} />
-          <Route path="/map" component={Map} />
-          <Route path="/about" component={About} />
-          <Route path="/" component={Cover} exact />
+
+          <Route path="/" component={About} exact />
         </Switch>
       </div>
+      </React.Fragment>
     );
   }
 
