@@ -11,6 +11,7 @@ class DoseSerializer(serializers.ModelSerializer):
 
 
 class PrescriptionSerializer(serializers.ModelSerializer):
+    doses = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = models.Prescription
         fields = fields = ('id', 'brand_name', 'medication_name', 'directions', 'quantity', 'refills', 'pharmacy_number', 'rx', 'prescriber', 'label_image', 'patient','take_as_needed','hourly_frequency', 'doses')
