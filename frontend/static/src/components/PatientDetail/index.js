@@ -144,7 +144,8 @@ class Prescription extends Component {
         <div className="medicine_name">{this.props.prescription.medication_name}</div>
         {/*<Link className="nav-link" to={}>Edit</Link>*/}
         {/*<button className="btn btn-link" >Remove</button>*/}
-        <button type="button" className="btn btn-link" onClick={() => this.props.removePrescription(this.props.prescription)}>Remove</button>
+        <button type="button" className="btn btn-link" onClick={() => this.props.removePrescription(this.props.prescription)}>Delete Prescription</button>
+        <button type="button" className="btn btn-link" onClick={() => this.props.editPrescription(this.props.prescription)}>Edit Prescription</button>
         <Button variant="primary" onClick={() => this.setState({displayModal: true})}>Give Medication</Button>
         <Modal show={this.state.displayModal} onHide={() => this.setState({displayModal: false})}>
           <Modal.Header closeButton>
@@ -226,11 +227,14 @@ class PatientDetail extends Component {
     // this.editMed = this.editMed.bind(this);
     this.fetchPatientDetail = this.fetchPatientDetail.bind(this);
     this.removePrescription = this.removePrescription.bind(this);
+    this.editPrescription = this.editPrescription.bind(this);
   }
   componentDidMount() {
     this.fetchPatientDetail();
   }
 
+
+//delete method......
   async removePrescription(prescription){
     const options = {
           method: 'DELETE',
@@ -251,6 +255,39 @@ class PatientDetail extends Component {
 
 
       }
+
+      //edit method....
+      async editPrescription(prescription) {
+          console.log(prescription);
+          // event.preventDefault();
+          // console.log(!(prescription.label_image instanceof File));
+
+          if(!(prescription.label_image instanceof File)) {
+            delete prescription.label_image;
+          }
+
+
+          const id = prescription.id;
+          let formData = new FormData();
+          const keys = Object.keys(prescription);
+          keys.forEach(key => formData.append(key, prescription[key]));
+
+          const options = {
+            method: 'PUT',
+            headers: {
+              'X-CSRFToken': Cookies.get('csrftoken'),
+            },
+                body:formData,
+          }
+          const handleError = (err) => console.warn(err);
+          const response = await fetch(`/api/v1/user/patients/prescription/${id}/`, options);
+          const data = await response.json().catch(handleError)
+
+          const prescriptions = [...this.state.prescriptions];
+          const index = prescriptions.findIndex(prescription => prescription.id === id);
+          prescriptions[index] = data;
+          this.setState({prescriptions});
+        }
 
   async fetchPatientDetail() {
     const id = this.props.match.params.id;
@@ -315,7 +352,7 @@ class PatientDetail extends Component {
     const prescriptionDetail = this.props.match.params;
     const id = this.props.match.params.id;
     console.log(this.state.prescriptions)
-    const prescriptions = this.state.prescriptions?.map(prescription => <Prescription key={prescription.id} prescription={prescription} removePrescription={this.removePrescription}/>);
+    const prescriptions = this.state.prescriptions?.map(prescription => <Prescription key={prescription.id} prescription={prescription} removePrescription={this.removePrescription} editPrescription={this.editPrescription}/>);
     return(
       <div>
      <div className="top_bar col-lg-12 col-xs-12 ">

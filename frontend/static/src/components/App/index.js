@@ -19,6 +19,7 @@ import PatientDetail from './../PatientDetail';
 
 import MedicationHistory from './../MedicationHistory';
 import PrescriptionForm from './../PrescriptionForm';
+import PrescriptionEdit from './../PrescriptionEdit';
 
 import About from './../About';
 
@@ -123,11 +124,14 @@ class App extends Component {
           <Route path='/registration' render={(props) => <Registration {...props} isLoggedIn={this.state.isLoggedIn} handleRegistration={ this.handleRegistration } />} />
           <Route path='/login' render={(props) => <Login {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={ this.handleLogin } />} />
 
+          <PrivateRoute path='/prescription/:id' isLoggedIn={this.state.isLoggedIn} component={PrescriptionEdit} />
           <PrivateRoute path='/user/patients/:id/prescriptions/add/' isLoggedIn={this.state.isLoggedIn} component={PrescriptionForm} />
+
           <PrivateRoute path='/user/patients/add' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
           <PrivateRoute path='/user/patients/:id' isLoggedIn={this.state.isLoggedIn} component={PatientDetail} />
           <PrivateRoute path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
           <PrivateRoute path='/user/medicationHistory/:id' isLoggedIn={this.state.isLoggedIn} component={MedicationHistory} />
+
           <Route path="/menu" component={Menu} />
           <Route path="/map" component={Map} />
           <Route path="/about" component={About} />

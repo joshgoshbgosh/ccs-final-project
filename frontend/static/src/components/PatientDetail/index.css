@@ -5,6 +5,7 @@ body {
 .top_bar {
   background-color:#8A1065;
   height: 70px;
+
 }
 .bottom_bar {
   background-color:#8A1065;
@@ -29,6 +30,7 @@ body {
   margin-left: 15px;
   padding-top: 4px;
   border: none;
+
 }
 .p_detail {
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
@@ -37,6 +39,7 @@ body {
 text-align: left;
 text-decoration: underline;
 margin-bottom: 10px;
+
 
 
   font-size: 20px;
@@ -80,7 +83,7 @@ margin-bottom: 10px;
 }
 .med_history {
   font-size: 25px;
-  margin-left:34px;
+  margin-left:18px;
 }
 .med_history:hover {
   text-decoration: underline;

@@ -96,6 +96,10 @@ class PrescriptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+    
+
+
+
 # def job():
 #
 #     for y in Profile.objects.all():

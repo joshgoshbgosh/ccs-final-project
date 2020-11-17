@@ -16,6 +16,7 @@ class MedicationHistory extends Component {
      }
      componentDidMount() {
        this.fetchMedicationHistory();
+       console.log(this.state)
      }
      async fetchMedicationHistory() {
        console.log(this.props.match.params);
