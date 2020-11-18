@@ -1,8 +1,10 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 
 from . import models
 
+User = get_user_model()
 
 class DoseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,4 +23,10 @@ class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Patient
         depth = 1
-        fields = fields = ('id', 'image','first_name', 'last_name', 'address', 'date_of_birth', 'height', 'weight', 'gender', 'food_allergies', 'medication_allergies', 'primary_doctor', 'primary_doctor_telephone_number', 'language', 'is_bed_patient','needs_walking_device','walking_devices', 'surgeries', 'prescriptions')
+        fields = fields = ('id', 'image','first_name', 'last_name', 'address', 'date_of_birth', 'height', 'weight', 'gender', 'food_allergies', 'medication_allergies', 'primary_doctor', 'primary_doctor_telephone_number', 'language', 'is_bed_patient','needs_walking_device','walking_devices', 'surgeries', 'prescriptions','caregivers')
+
+
+class CaregiverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'patients')

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './index.css';
-
 import Cookies from 'js-cookie';
 class PrescriptionEdit extends Component {
   constructor(props){
@@ -29,14 +27,12 @@ handleChange (event){
 handleUpload (event){
   this.setState({[event.target.name]: event.target.files[0]});
 }
-
 async componentDidMount() {
   // fetch the prescription based on the id in the url
   const response = await fetch(`/api/v1/user/patients/prescriptions/${this.props.match.params.id}/`).catch(this.handleError);
   const data = await response.json().catch(this.handleError);
   this.setState({...data});
 }
-
 async handleSubmit(event){
   event.preventDefault();
   const id = this.props.match.params.id;
@@ -46,11 +42,10 @@ async handleSubmit(event){
   if(!(prescription.label_image instanceof File)) {
     delete prescription.label_image;
   }
-
   const keys = Object.keys(prescription);
   console.log(prescription)
   keys.forEach(key => formData.append(key, prescription[key]));
-  formData.append('patient', id);
+  // formData.append('patient', id);
   const options = {
       method: 'PATCH',
       headers: {
@@ -59,14 +54,13 @@ async handleSubmit(event){
       body: formData,
   };
   await fetch(`/api/v1/user/patients/prescriptions/${id}/`, options);
-  this.props.history.push(`/user/patient/prescriptions/${id}`);
+  this.props.history.push(`/user/patients/${this.state.patient}`);
 };
 render() {
   return(
       <React.Fragment>
       <div className="col-lg-12 col-xs-12 top_bar">
       <p className="editform-label">EDIT PRESCRIPTION</p>
-
       </div>
       <div className="row">
         <form className="col-lg-12 col-xs-12 med-form" onSubmit={this.handleSubmit} >
@@ -141,8 +135,6 @@ render() {
         </form>
         </div>
         <div className="bottom_bar col-lg-12 col-xs-12 ">
-
-
         </div>
       </React.Fragment>
     )

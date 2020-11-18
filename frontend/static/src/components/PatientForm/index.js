@@ -79,8 +79,8 @@ class PatientForm extends Component {
         body: formData,
     };
     const response = await fetch(`/api/v1/user/patients/${patient.id}/`, options).catch(this.handleError);
-    const data = await response.json().catch(this.handleError);
-    this.props.saveEdit(data);
+    await response.json().catch(this.handleError);
+    this.props.history.push(`/user/patients/${patient.id}`);
   }
   handleImage(event) {
     // The selected files' are returned by the element's HTMLInputElement.files property — this returns a FileList object, which contains a list of File objects
@@ -109,9 +109,13 @@ class PatientForm extends Component {
   handleError(err) {
     console.warn(err);
   }
-  componentDidMount() {
-    if(this.props.id) {
-      this.setState({...this.props});
+  async componentDidMount() {
+    if(this.props.match.params.id) {
+      const id = this.props.match.params.id;
+      const response = await fetch(`/api/v1/user/patients/${id}/`).catch(this.handleError);
+      const data = await response.json().catch(this.handleError);
+      this.setState({...data});
+      // console.log(data);
     }
   }
   async handleSubmit(event){
@@ -158,6 +162,7 @@ class PatientForm extends Component {
     const data = await response.json().catch(this.handleError);
     this.props.history.push(`/user/patients/${data.id}/`);
 };
+
 render() {
     return (
       <React.Fragment>
@@ -280,7 +285,7 @@ render() {
             <textarea className="form-control" rows="8" placeholder="Describe surgery history" name="surgeries" id="surgeries" value={this.state.surgeries} onChange={this.handleInput}/>
           </div>
           {
-            this.props.isEditing
+            this.state.id
           ?
             <button type="button" className="btn btn-primary" onClick={this.saveEdit}>Save Changes</button>
           :

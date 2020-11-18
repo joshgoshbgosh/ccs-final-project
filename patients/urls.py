@@ -15,6 +15,6 @@ urlpatterns = [
 
 
     path('prescriptions/<int:pk>/', views.PrescriptionDetailAPIView.as_view()),
-    
 
+    path('caregivers/', views.CaregiverListAPIView.as_view())
 ]

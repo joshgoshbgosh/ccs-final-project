@@ -17,6 +17,8 @@ import PatientForm from './../PatientForm';
 import PatientList from './../PatientList';
 import PatientDetail from './../PatientDetail';
 
+import Caregivers from './../Caregivers';
+
 import MedicationHistory from './../MedicationHistory';
 import PrescriptionForm from './../PrescriptionForm';
 import PrescriptionEdit from './../PrescriptionEdit';
@@ -132,11 +134,12 @@ class App extends Component {
           <PrivateRoute path='/user/prescriptiondetail/:id'isLoggedIn={this.state.isLoggedIn} component={PrescriptionDetail} />
 
           <PrivateRoute path='/user/patients/add' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
+          <PrivateRoute path='/user/patients/edit/:id/' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
           <PrivateRoute path='/user/patients/:id' isLoggedIn={this.state.isLoggedIn} component={PatientDetail} />
           <PrivateRoute path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
           <PrivateRoute path='/user/medicationHistory/:id' isLoggedIn={this.state.isLoggedIn} component={MedicationHistory} />
-
-
+          <PrivateRoute path='/user/caregivers/:id'isLoggedIn={this.state.isLoggedIn} component={Caregivers} />
+          <PrivateRoute path='/user/map'isLoggedIn={this.state.isLoggedIn} component={Map} />
           <Route path="/" component={About} exact />
         </Switch>
       </div>

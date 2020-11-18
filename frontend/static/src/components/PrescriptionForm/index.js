@@ -17,16 +17,36 @@ class PrescriptionForm extends Component {
       take_as_needed: false,
       hourly_frequency:'',
       label_image:null,
+      preview: '',
     }
   this.handleChange = this.handleChange.bind(this);
-  this.handleUpload = this.handleUpload.bind(this);
+  this.handleImage = this.handleImage.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
+  this.handleCheckbox = this.handleCheckbox.bind(this);
+}
+handleCheckbox(event) {
+  this.setState({[event.target.name]: event.target.checked});
 }
 handleChange (event){
   this.setState({[event.target.name]: event.target.value});
 }
-handleUpload (event){
-  this.setState({[event.target.name]: event.target.files[0]});
+handleImage(event) {
+  // The selected files' are returned by the element's HTMLInputElement.files property — this returns a FileList object, which contains a list of File objects
+  let file = event.target.files[0];
+  // we'll use this value when we save the image (see _saveImage)
+  this.setState({
+    image: file
+  });
+  // The FileReader object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read.
+  let reader = new FileReader();
+  // A handler for the loadend event. This event is triggered each time the reading operation is completed (either in success or failure).
+  reader.onloadend = () => {
+    this.setState({
+      preview: reader.result
+    });
+  }
+  // Starts reading the contents of the specified Blob, once finished, the result attribute contains a data: URL representing the file's data.
+  reader.readAsDataURL(file);
 }
 async handleSubmit(event){
   event.preventDefault();
@@ -48,91 +68,70 @@ async handleSubmit(event){
       body: formData,
   };
   await fetch(`/api/v1/user/patients/${id}/prescriptions/`, options);
-  this.props.history.push(`/user/patient/${id}/prescriptions/`);
+  this.props.history.push(`/user/patients/${id}/`);
 };
 render() {
   return(
       <React.Fragment>
-      <div className="col-lg-12 col-xs-12 top_bar">
-      <p className="medform-label">ADD PRESCRIPTION</p>
-
-      </div>
-      <div className="row">
-        <form className="col-lg-12 col-xs-12 med-form" onSubmit={this.handleSubmit} >
+      {
+        !this.props.isEditing
+      ?
+        <h2 className="list-label">PRESCRIPTION FORM</h2>
+      :
+        null}
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label htmlFor='brand_name'className="brand">Brand Name</label>
-            </div>
-            <div>
-            <input type="text" id='brand_name' name="brand_name" value={this.state.brand_name} onChange={this.handleChange} />
+            <label htmlFor="label_image"><b>Label image</b></label>
+            <input type="file" className="form-control" placeholder="Upload image" name="label_image" id="label-image" onChange={this.handleImage} required/>
+            {this.state.label_image ? (
+            <img src={this.state.preview} alt='preview'/>
+          ) : (
+            null
+          )}
           </div>
           <div className="form-group">
-            <label htmlFor='medication_name'className="med">Medication Name</label>
-            </div>
-            <div>
-            <input type="text" id='medication_name' name="medication_name" value={this.state.medication_name} onChange={this.handleChange} />
-            </div>
-          <div className="form-group">
-            <label htmlFor='directions'className="direct">Directions</label>
-            </div>
-            <div>
-            <input type="text" id='directions' name="directions" value={this.state.directions} onChange={this.handleChange} />
+            <label htmlFor='brand_name'>Brand Name</label>
+            <input className="form-control" type="text" id='brand_name' name="brand_name" value={this.state.brand_name} onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor='hourly_frequency'className="direct">Hourly Frequency</label>
-            </div>
-            <div>
-            <input type="text" id='hourly_frequency' name="hourly_frequency" value={this.state.hourly_frequency} onChange={this.handleChange} />
+            <label htmlFor='medication_name'>Medication Name</label>
+            <input className="form-control" type="text" id='medication_name' name="medication_name" value={this.state.medication_name} onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor='take_as_needed'className="take_as_needed">Take As Needed</label>
-            <input type="checkbox" className="take_as_needed" id="take_as_needed" name="take_as_needed" value={this.state.take_as_needed} onChange={this.handleChange} />
+            <label htmlFor='directions'>Directions</label>
+            <input className="form-control" type="text" id='directions' name="directions" value={this.state.directions} onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor='quantity'className="quantity">Quantity</label>
-            </div>
-            <div>
-            <input type="text" id='quantity' name="quantity" value={this.state.quantity} onChange={this.handleChange} />
+            <label htmlFor='hourly_frequency'>Hourly Frequency</label>
+            <input className="form-control" type="text" id='hourly_frequency' name="hourly_frequency" value={this.state.hourly_frequency} onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor='refills'className="refill">Refills</label>
-            </div>
-            <div>
-            <input type="text" id='refills' name="refills" value={this.state.refills} onChange={this.handleChange} />
+            <label htmlFor='quantity'>Quantity</label>
+            <input className="form-control" type="text" id='quantity' name="quantity" value={this.state.quantity} onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor='pharmacy_number'className="number">Pharmacy Number</label>
-            </div>
-            <div>
-            <input type="text" id='pharmacy_number' name="pharmacy_number" value={this.state.pharmacy_number} onChange={this.handleChange} />
+            <label htmlFor='refills'>Refills</label>
+            <input className="form-control" type="text" id='refills' name="refills" value={this.state.refills} onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor='rx'className="rx">RX</label>
-            </div>
-            <div>
-            <input type="text" id='rx' name="rx" value={this.state.rx} onChange={this.handleChange} />
+            <label htmlFor='pharmacy_number'>Pharmacy Number</label>
+            <input className="form-control" type="text" id='pharmacy_number' name="pharmacy_number" value={this.state.pharmacy_number} onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor='prescriber'className="prescribe">Prescriber</label>
-            </div>
-            <div>
-            <input type="text" id='prescriber' name="prescriber" value={this.state.prescriber} onChange={this.handleChange} />
+            <label htmlFor='rx'>RX</label>
+            <input className="form-control" type="text" id='rx' name="rx" value={this.state.rx} onChange={this.handleChange} />
           </div>
-          <div>
-            <label htmlFor='image'className="label_pic">Label Image</label>
-            </div>
-            <div>
-            <input type="file" name="label_image" onChange={this.handleUpload}/>
-            <img src={this.state.upload} alt=""/>
+          <div className="form-group">
+            <label htmlFor='prescriber'>Prescriber</label>
+            <input className="form-control" type="text" id='prescriber' name="prescriber" value={this.state.prescriber} onChange={this.handleChange} />
           </div>
-          <div>
+          <div className="form-check">
+            <input type="checkbox" className="form-check-input" name="take_as_needed" id="take_as_needed" checked={this.state.take_as_needed} onChange={this.handleCheckbox}/>
+            <label className="form-check-label" htmlFor='take_as_needed'><b>Take as needed</b></label>
+          </div>
+          <br/>
           <button type="submit"className="sub btn btn-dark">Submit</button>
-          </div>
         </form>
-        </div>
-        <div className="bottom_bar col-lg-12 col-xs-12 ">
-
-
-        </div>
       </React.Fragment>
     )
   }

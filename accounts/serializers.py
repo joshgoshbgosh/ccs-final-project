@@ -15,8 +15,8 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email')
 
-    def perform_create(self, serializer):
-        import pdb; pdb.set_trace()
+    # def perform_create(self, serializer):
+    #     import pdb; pdb.set_trace()
 
 
 # Overriding the default TokenSerializer to return user information

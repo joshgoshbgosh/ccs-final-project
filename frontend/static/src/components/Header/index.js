@@ -11,6 +11,7 @@ function Header(props){
               <React.Fragment>
                 <li className="nav-item mr-2"><NavLink className="nav-link" to={`/user/patients`}>Patients</NavLink></li>
                 <li className="nav-item"><NavLink className="nav-link" to={`/user/patients/add`}>New Patient</NavLink></li>
+              
               </React.Fragment>
               :
               null

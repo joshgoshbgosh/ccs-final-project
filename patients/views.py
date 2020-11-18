@@ -1,5 +1,6 @@
 import os
 import sys
+from django.contrib.auth import get_user_model
 from accounts.models import Profile
 from django.shortcuts import get_object_or_404
 sys.path.append('accounts')
@@ -9,6 +10,8 @@ from twilio.rest import Client
 
 from . import models
 from . import serializers
+
+User = get_user_model()
 
 
 class PatientListAPIView(generics.ListCreateAPIView):
@@ -80,7 +83,7 @@ class DoseListAPIView(generics.ListCreateAPIView):
             phone_number = Profile.phone_number
             message = client.messages \
                 .create(
-                     body= " medication has been given!",
+                     body= prescription.medication_name + comments + datetime,
                      from_='+12314621486',
                      to = number
                  )
@@ -95,8 +98,14 @@ class PrescriptionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.PrescriptionSerializer
 
 
+class CaregiverListAPIView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.CaregiverSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
-
+    def get_queryset(self):
+        # import pdb; pdb.set_trace()
+        return models.User.objects.exclude(id=self.request.user.id)
 
 # def job():
 #
