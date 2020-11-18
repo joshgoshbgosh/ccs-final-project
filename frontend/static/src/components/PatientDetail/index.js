@@ -92,12 +92,14 @@ class PatientDetail extends Component {
       state: '',
       image:null,
       availableCaregivers: [],
+      displayModal: false,
     }
     this.fetchPatientDetail = this.fetchPatientDetail.bind(this);
     this.removePrescription = this.removePrescription.bind(this);
     // this.editPrescription = this.editPrescription.bind(this);
     this.fetchCargivers = this.fetchCaregivers.bind(this);
     this.removeCaregiver = this.removeCaregiver.bind(this);
+    this.addCaregiver = this.addCaregiver.bind(this);
   }
 
   async fetchCaregivers() {
@@ -117,20 +119,41 @@ class PatientDetail extends Component {
     caregivers.splice(index, 1);
     this.setState({caregivers});
 
-    const options = {
-        method: 'PATCH',
-        headers: {
-          'X-CSRFToken': csrftoken,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({caregivers: [15]}),
-    };
-    const response = await fetch(`/api/v1/user/patients/${this.state.id}/`, options).catch(this.handleError);
-    await response.json().catch(this.handleError);
+    // const options = {
+    //     method: 'PATCH',
+    //     headers: {
+    //       'X-CSRFToken': csrftoken,
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({caregivers: caregivers}),
+    // };
+    // const response = await fetch(`/api/v1/user/patients/${this.state.id}/`, options).catch(this.handleError);
+    // await response.json().catch(this.handleError);
 
   }
 
+  async addCaregiver(caregiver) {
+    const csrftoken = Cookies.get('csrftoken');
+    let caregivers = [...this.state.caregivers];
+    caregivers.push(caregiver);
 
+    let availableCaregivers = [...this.state.availableCaregivers];
+    const index = availableCaregivers.indexOf(caregiver);
+    availableCaregivers.splice(index, 1);
+    this.setState({caregivers, availableCaregivers});
+    // const options = {
+    //     method: 'PATCH',
+    //     headers: {
+    //       'X-CSRFToken': csrftoken,
+    //       'Content-Type': 'application/json',
+    //     },
+    //       body: JSON.stringify({caregivers: caregivers}),
+    // };
+    // const response = await fetch(`/api/v1/user/patients/${this.state.id}/`, options);
+    // const data = await response.json().catch(this.handleError);
+    // console.log(data);
+
+  }
   componentDidMount() {
     this.fetchPatientDetail();
     this.fetchCaregivers();
@@ -201,6 +224,15 @@ class PatientDetail extends Component {
         <button type="button" onClick={() => this.removeCaregiver(caregiver)}>Remove</button>
       </div>
     ))
+
+    const availableCaregivers = this.state.availableCaregivers?.map(caregiver => (
+      <div key={caregiver.id}>
+        <p>{caregiver.username}</p>
+        <button type="button" onClick={() => this.addCaregiver(caregiver)}>Add</button>
+      </div>
+    ))
+
+
     return(
       <React.Fragment>
         <div className="row">
@@ -395,6 +427,47 @@ class PatientDetail extends Component {
             </ul>
 
             <ul className="col-md-5 col-12 list-group list-group-flush">
+
+
+            <li class="list-group-item d-flex align-items-baseline">
+
+              <button onClick={() => this.setState({displayModal: true})} className="btn btn-link ml-auto" type="button">Add Caregiver</button>
+              <Modal show={this.state.displayModal} onHide={() => this.setState({displayModal: false})}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Search Caregivers Below</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {availableCaregivers}
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={() => this.setState({displayModal: false})}>
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+              {caregivers}
+            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               {caregivers}
             </ul>
           </React.Fragment>

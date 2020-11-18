@@ -19,14 +19,15 @@ class PrescriptionSerializer(serializers.ModelSerializer):
         fields = fields = ('id', 'brand_name', 'medication_name', 'directions', 'quantity', 'refills', 'pharmacy_number', 'rx', 'prescriber', 'label_image', 'patient','take_as_needed','hourly_frequency', 'doses')
 
 
-class PatientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Patient
-        depth = 1
-        fields = fields = ('id', 'image','first_name', 'last_name', 'address', 'date_of_birth', 'height', 'weight', 'gender', 'food_allergies', 'medication_allergies', 'primary_doctor', 'primary_doctor_telephone_number', 'language', 'is_bed_patient','needs_walking_device','walking_devices', 'surgeries', 'prescriptions','caregivers')
-
-
 class CaregiverSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'patients')
+
+
+class PatientSerializer(serializers.ModelSerializer):
+    caregivers = CaregiverSerializer(many=True, read_only=True)
+    class Meta:
+        model = models.Patient
+        depth = 1
+        fields = fields = ('id', 'image','first_name', 'last_name', 'address', 'date_of_birth', 'height', 'weight', 'gender', 'food_allergies', 'medication_allergies', 'primary_doctor', 'primary_doctor_telephone_number', 'language', 'is_bed_patient','needs_walking_device','walking_devices', 'surgeries', 'prescriptions','caregivers')
