@@ -1,25 +1,89 @@
 body{
-  background-color: #EFEFEF;
+  background-color: white;
 }
 
+.tanbox {
+background-color: #EFE6D4;
+height: 500px;
+opacity: 60%;
 
-#about {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+}
+.undercard {
+width: 350px;
+height: 250px;
+background-color: white;
+transform: rotate(20deg);
+position:relative;
+left:15%;
+top:40%;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.underphoto {
+  width: 315px;
+  position:relative;
+  top: 8%;
+  left: 5%;
+
+
 }
 
-
-
-
-
-
-#about .about-img {
-  width: 600px;
-  border: 1px;
+.middlecard {
+  width: 350px;
+  height: 250px;
+  background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: rotate(155deg);
+  position:relative;
+  bottom: 30%;
+  left:6%;
 }
-#about .paragraph {
-  width:400px;
-  line-height: 26px;
+.middlephoto {
+  width: 315px;
+  position:relative;
+  transform: rotate(180deg);
+  top:8%;
+  left: 5%;
 }
+
+.topcard {
+  width: 350px;
+  height: 250px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: rotate(190deg);
+  position:relative;
+  bottom: 92%;
+  left: 21%;
+}
+.topphoto {
+  width: 315px;
+  position:relative;
+  transform: rotate(180deg);
+  top: 7%;
+  left:5%;
+}
+
+.words {
+border-top: solid;
+border-color: #FF0000;
+border-width: thin;
+margin-top: 30px;
+padding-top: 20px;
+border-bottom: solid thin #ff0000;
+font-weight: 500;
+line-height: 30px;
+}
+
+.glowlogo {
+font-size: 200px;
+position:relative;
+bottom: 640px;
+float:right;
+margin-right: 180px;
+text-rendering: optimizeLegibility;
+opacity: 80%;
+
+
+
+
+  }

@@ -33,7 +33,7 @@ class Patient(models.Model):
     walking_devices = models.CharField(max_length=225, null=True, blank=True, default=None)
     surgeries = models.TextField(default=None, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    caregivers = models.ManyToManyField(User, related_name="patients")
+    caregivers = models.ManyToManyField(User,blank=True, related_name="patients")
     def __str__(self):
         return self.last_name + ", " + self.first_name
 

@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 
 import GoogleMapReact from 'google-map-react';
-import './map.css';
+
 import styled from 'styled-components';
 
 import AutoComplete from './Autocomplete';
 import Marker from './Marker';
 
 const Wrapper = styled.main`
-  width: 100%;
+  width: 500px;
   height: 500px;
 `;
 
@@ -126,7 +126,6 @@ class MyGoogleMap extends Component {
 
         return (
             <Wrapper>
-
                 {mapApiLoaded && (
                     <div>
                         <AutoComplete map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />
@@ -143,13 +142,12 @@ class MyGoogleMap extends Component {
                     onChildClick={() => console.log('child click')}
                     onClick={this._onClick}
                     bootstrapURLKeys={{
-                        key: process.env.REACT_APP_GOOGLE_PLACES_API_KEY,
+                        key: 'process.env.REACT_APP_GOOGLE_PLACES_API_KEY',
                         libraries: ['places', 'geometry'],
                     }}
                     yesIWantToUseGoogleMapApiInternals
                     onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
                 >
-
 
                     <Marker
                         text={this.state.address}
@@ -160,13 +158,10 @@ class MyGoogleMap extends Component {
 
                 </GoogleMapReact>
 
-                <div className="bottom">
                 <div className="info-wrapper">
                     <div className="map-details">Latitude: <span>{this.state.lat}</span>, Longitude: <span>{this.state.lng}</span></div>
                     <div className="map-details">Zoom: <span>{this.state.zoom}</span></div>
                     <div className="map-details">Address: <span>{this.state.address}</span></div>
-                </div>
-                
                 </div>
 
 

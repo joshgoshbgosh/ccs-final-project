@@ -7,6 +7,7 @@ import PrivateRoute from './../PrivateRoute';
 
 // import Menu from './../Menu';
 import Header from './../Header';
+import Footer from './../Footer';
 
 import Login from './../Login';
 import Registration from './../Registration';
@@ -123,6 +124,7 @@ class App extends Component {
     return (
       <React.Fragment>
       <Header isLoggedIn={this.state.isLoggedIn} handleLogout={ this.handleLogout } />
+
       <div className="container">
       <Switch>
 
@@ -143,6 +145,7 @@ class App extends Component {
           <Route path="/" component={About} exact />
         </Switch>
       </div>
+      <Footer/>
       </React.Fragment>
     );
   }

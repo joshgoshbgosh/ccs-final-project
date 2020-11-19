@@ -3,6 +3,7 @@ import sys
 from django.contrib.auth import get_user_model
 from accounts.models import Profile
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 sys.path.append('accounts')
 
 from rest_framework import generics, permissions
@@ -24,7 +25,7 @@ class PatientListAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return models.Patient.objects.filter(user=user)
+        return models.Patient.objects.filter(Q(user=user) | Q(caregivers_id=self.request.user.id))
 
 
 class PatientDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -36,7 +37,16 @@ class PatientDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return models.Patient.objects.filter(user=user)
+        return models.Patient.objects.filter(Q(user=user) | Q(caregivers_id=self.request.user.id))
+
+    def update(self, request, args,  kwargs):
+        patient = self.get_object()
+        caregivers = self.request.data.get('caregivers')
+        if caregivers:
+            patient.caregivers.clear()
+            for caregiver in caregivers:
+                patient.caregivers.add(caregiver.get('id'))
+        return super(),update(request, args, kwargs)
 
 
 class PrescriptionListAPIView(generics.ListCreateAPIView):

@@ -68,6 +68,7 @@ class PatientForm extends Component {
     delete patient.feet;
     delete patient.inches;
     // console.log(patient.height);
+    delete patient.caregivers
     const formData = new FormData();
     const keys = Object.keys(patient);
     keys.forEach(key => formData.append(key, this.state[key]));
