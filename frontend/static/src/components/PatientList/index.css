@@ -1,13 +1,4 @@
-#patient-list .top_bar {
-  background-color:#8A1065;
-  height: 70px;
-}
-#patient-list .bottom_bar {
-  background-color:#8A1065;
-  height: 70px;
-  margin-top: 50px;
-  margin-bottom: 10px;
-}
+
 
 #patient-list .card {
   display:flex;
@@ -18,9 +9,9 @@
 
 
   margin-right: 155px;
-  margin-left: 100px;
-  margin-top: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-left: 35px;
+  margin-top: 30px;
+
 
 }
 #patient-list .list-label {
@@ -43,7 +34,11 @@
 }
 #patient-list .card-title {
   color: black;
-  margin-top:100px;
+  margin-top:397px;
+  margin-left: -240px;
+  font-family: courier;
+  font-weight: 500;
+  text-decoration: underline;
 }
 #patient-list a:hover {
   text-decoration: none;
@@ -52,10 +47,10 @@
   display:inline-block;
 }
 #patient-list .left {
-  width:1000px;
-  display: flex;
+  /* width:1000px; */
+  /* display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: center; */
 
 }
 #patient-list .addpatient {
@@ -66,16 +61,29 @@
 
 }
 
-/* .plist_home {
-  font-size: 40px;
-  color:#8A1065;
-  letter-spacing: 5px;
-  font-weight: 400;
-  text-align: center;
+#patient-list  {
+  background-color:#EFE6D4;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10%;
+  padding-right: 10%;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-.box {
- margin-top: 270px;
- margin-left: 250px;
-text-align: center;
 
-} */
+#patient-list .photocard {
+  background-color: white;
+  width: 370px;
+  height: 500px;
+
+
+  /* margin-left: 70px; */
+  /* position: relative; */
+  /* top: 10%; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#patient-list .photocard:not(:last-child) {
+  margin-right: 16px;
+}

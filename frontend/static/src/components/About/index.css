@@ -79,9 +79,10 @@ font-size: 200px;
 position:relative;
 bottom: 640px;
 float:right;
-margin-right: 180px;
-text-rendering: optimizeLegibility;
+margin-right: 130px;
+transform: rotate(20deg);
 opacity: 80%;
+font-family: courier;
 
 
 

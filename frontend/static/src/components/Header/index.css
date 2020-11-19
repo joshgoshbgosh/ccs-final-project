@@ -7,12 +7,8 @@ header {
    margin-top: 12px;
    color: white;
    font-weight: bold;
-   
+  }
 
-
-
-
-}
 .nav-link {
   color: white;
   letter-spacing: 5px;
@@ -25,7 +21,9 @@ header {
   margin-bottom: 20px;
   margin-right: 10px;
   color: white;
+
 }
+
 .newpatient {
   margin-left: 15px;
   color:white;

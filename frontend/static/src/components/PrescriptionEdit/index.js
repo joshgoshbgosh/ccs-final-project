@@ -134,8 +134,7 @@ render() {
           </div>
         </form>
         </div>
-        <div className="bottom_bar col-lg-12 col-xs-12 ">
-        </div>
+        
       </React.Fragment>
     )
   }

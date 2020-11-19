@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
+import './index.css'
 class PatientForm extends Component {
   constructor(props) {
     super(props)
@@ -178,7 +179,7 @@ render() {
           <label htmlFor="image"><b>Image</b></label>
           <input type="file" className="form-control" placeholder="Upload image" name="image" id="image" onChange={this.handleImage} required/>
           {this.state.image ? (
-          <img src={this.state.preview} alt='preview' style={{width: "80%"}}/>
+          <img className="patient-form-img"src={this.state.preview} alt='preview' style={{width: "50%"}}/>
         ) : (
           null
         )}

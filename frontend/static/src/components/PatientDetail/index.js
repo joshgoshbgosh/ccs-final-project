@@ -45,6 +45,7 @@ class PrescriptionPreview extends Component {
     // the twilio url/view needs to fire off the text message
     this.setState({displayModal: false})
   }
+
     render() {
       return(
       <li class="list-group-item d-flex align-items-baseline">
@@ -75,8 +76,8 @@ class PrescriptionPreview extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-        <Link className="newmed nav-link" to={`/prescription/${this.props.prescription.id}`}>Edit</Link>
-        <button className="btn btn-link" type="button" onClick={() => this.props.removePrescription(this.props.prescription)}>Remove</button>
+        {this.props.isAdmin && <Link className="newmed nav-link" to={`/prescription/${this.props.prescription.id}`}>Edit</Link>}
+        {this.props.isAdmin && <button className="btn btn-link" type="button" onClick={() => this.props.removePrescription(this.props.prescription)}>Remove</button>}
       </li>
     )
   }
@@ -119,16 +120,21 @@ class PatientDetail extends Component {
     caregivers.splice(index, 1);
     this.setState({caregivers});
 
-    // const options = {
-    //     method: 'PATCH',
-    //     headers: {
-    //       'X-CSRFToken': csrftoken,
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({caregivers: caregivers}),
-    // };
-    // const response = await fetch(`/api/v1/user/patients/${this.state.id}/`, options).catch(this.handleError);
-    // await response.json().catch(this.handleError);
+    let availableCaregivers = [...this.state.availableCaregivers];
+    availableCaregivers.push(caregiver);
+    this.setState({availableCaregivers});
+
+    const options = {
+        method: 'PATCH',
+        headers: {
+          'X-CSRFToken': csrftoken,
+          'Content-Type': 'application/json',
+        },
+          body: JSON.stringify({caregivers: caregivers}),
+    };
+    const response = await fetch(`/api/v1/user/patients/${this.state.id}/`, options);
+    const data = await response.json().catch(this.handleError);
+    console.log(data);
 
   }
 
@@ -141,17 +147,17 @@ class PatientDetail extends Component {
     const index = availableCaregivers.indexOf(caregiver);
     availableCaregivers.splice(index, 1);
     this.setState({caregivers, availableCaregivers});
-    // const options = {
-    //     method: 'PATCH',
-    //     headers: {
-    //       'X-CSRFToken': csrftoken,
-    //       'Content-Type': 'application/json',
-    //     },
-    //       body: JSON.stringify({caregivers: caregivers}),
-    // };
-    // const response = await fetch(`/api/v1/user/patients/${this.state.id}/`, options);
-    // const data = await response.json().catch(this.handleError);
-    // console.log(data);
+    const options = {
+        method: 'PATCH',
+        headers: {
+          'X-CSRFToken': csrftoken,
+          'Content-Type': 'application/json',
+        },
+          body: JSON.stringify({caregivers: caregivers}),
+    };
+    const response = await fetch(`/api/v1/user/patients/${this.state.id}/`, options);
+    const data = await response.json().catch(this.handleError);
+    console.log(data);
 
   }
   componentDidMount() {
@@ -216,8 +222,9 @@ class PatientDetail extends Component {
   //   this.setState({isEditing: false, ...data});
   // }
   render() {
+    const isAdmin = JSON.parse(localStorage.getItem('user')).id === this.state.user?.id
     const id = this.props.match.params.id;
-    const prescriptions = this.state.prescriptions?.map(prescription => <PrescriptionPreview key={prescription.id} prescription={prescription} removePrescription={this.removePrescription} editPrescription={this.editPrescription}/>);
+    const prescriptions = this.state.prescriptions?.map(prescription => <PrescriptionPreview key={prescription.id} prescription={prescription} removePrescription={this.removePrescription} editPrescription={this.editPrescription} isAdmin={isAdmin}/>);
     const caregivers = this.state.caregivers?.map(caregiver => (
       <div key={caregiver.id}>
         <p>{caregiver.username}</p>
@@ -245,8 +252,8 @@ class PatientDetail extends Component {
           <React.Fragment>
           <div className="col-md-7 col-12">
             <img src= {this.state.image} alt="" width="300" className="rounded-circle mb-3"/>
-            <Link className="newmed nav-link" to={`/user/patients/edit/${id}`}>Edit Patient</Link>
-            <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>Add New Prescription</Link>
+            {isAdmin && <Link className="newmed nav-link" to={`/user/patients/edit/${id}`}>Edit Patient</Link>}
+            {isAdmin && <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>Add New Prescription</Link>}
             <Link className="newmed nav-link" to={`/user/medicationHistory/${id}`}>View Prescription History</Link>
 
             <div className="table-responsive">
@@ -445,7 +452,7 @@ class PatientDetail extends Component {
                   </Button>
                 </Modal.Footer>
               </Modal>
-              {caregivers}
+
             </li>
 
 
@@ -468,7 +475,7 @@ class PatientDetail extends Component {
 
 
 
-              {caregivers}
+              {isAdmin && caregivers}
             </ul>
           </React.Fragment>
           }

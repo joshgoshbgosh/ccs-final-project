@@ -11,10 +11,12 @@ urlpatterns = [
     path('<int:pk>/prescriptionHistory/', views.PrescriptionHistoryListAPIView.as_view()),
     # returns patients based on user id
     path('<int:pk>/', views.PatientDetailAPIView.as_view()),
-    path('', views.PatientListAPIView.as_view()),
+
 
 
     path('prescriptions/<int:pk>/', views.PrescriptionDetailAPIView.as_view()),
 
-    path('caregivers/', views.CaregiverListAPIView.as_view())
+    path('caregivers/', views.CaregiverListAPIView.as_view()),
+
+    path('', views.PatientListAPIView.as_view()),
 ]

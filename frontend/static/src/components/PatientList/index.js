@@ -6,6 +6,8 @@ class PatientCard extends Component {
   render() {
     const patient = this.props.patient;
     return(
+      <div className="tan-card mb-5">
+      <div className="photocard">
       <Link to={`/user/patients/${patient.id}`}>
         <Card>
           <Card.Img variant="top" src={patient.image}/>
@@ -14,6 +16,8 @@ class PatientCard extends Component {
           </Card.Body>
         </Card>
       </Link>
+      </div>
+      </div>
     )
   }
 }
@@ -37,15 +41,11 @@ class PatientList extends Component {
     // console.log(this.props.patientList)
     const patients = this.state.patientList.map(patient => <PatientCard key={patient.id} patient={patient}/>);
     return(
-      <div id="patient-list">
-      <div className="top_bar col-lg-12 col-xs-12 ">
-      <p className="list-label">PATIENT LIST</p>
+      <div id="patient-list" className="d-flex">
 
-      </div>
 
         {patients}
-        <div className="bottom_bar col-lg-12 col-xs-12 ">
-        </div>
+
       </div>
     )
   }

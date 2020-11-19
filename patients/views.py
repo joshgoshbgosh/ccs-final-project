@@ -25,7 +25,7 @@ class PatientListAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return models.Patient.objects.filter(Q(user=user) | Q(caregivers_id=self.request.user.id))
+        return models.Patient.objects.filter(Q(user=user) | Q(caregivers__id=self.request.user.id))
 
 
 class PatientDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -37,16 +37,16 @@ class PatientDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return models.Patient.objects.filter(Q(user=user) | Q(caregivers_id=self.request.user.id))
+        return models.Patient.objects.all()
 
-    def update(self, request, args,  kwargs):
+    def update(self, request, *args,  **kwargs):
         patient = self.get_object()
         caregivers = self.request.data.get('caregivers')
         if caregivers:
             patient.caregivers.clear()
             for caregiver in caregivers:
                 patient.caregivers.add(caregiver.get('id'))
-        return super(),update(request, args, kwargs)
+        return super().update(request, *args,  **kwargs)
 
 
 class PrescriptionListAPIView(generics.ListCreateAPIView):
@@ -79,26 +79,28 @@ class DoseListAPIView(generics.ListCreateAPIView):
         # import pdb; pdb.set_trace()
 
         if self.request.data.get('prescription'):
-
             prescription = get_object_or_404(models.Prescription, id=self.request.data.get('prescription'))
-            comments = self.request.data.get('comments')
-            datetime = self.request.data.get('datetime')
-            number = prescription.patient.user.profile.phone_number
-            # import pdb; pdb.set_trace()
-            # for y in Profile.objects.all():
-            #     phone_number = y.phone_number
-            account_sid = os.environ['TWILIO_ACCOUNT_SID']
-            auth_token = os.environ['TWILIO_AUTH_TOKEN']
-            client = Client(account_sid, auth_token)
-            phone_number = Profile.phone_number
-            message = client.messages \
-                .create(
-                     body= prescription.medication_name + comments + datetime,
-                     from_='+12314621486',
-                     to = number
-                 )
+            if not self.request.user == prescription.patient.user:
+                # import pdb; pdb.set_trace()
+                comments = self.request.data.get('comments')
+                datetime = self.request.data.get('datetime')
 
-            print(message.sid)
+                number = prescription.patient.user.profile.phone_number
+                # import pdb; pdb.set_trace()
+                # for y in Profile.objects.all():
+                #     phone_number = y.phone_number
+                account_sid = os.environ['TWILIO_ACCOUNT_SID']
+                auth_token = os.environ['TWILIO_AUTH_TOKEN']
+                client = Client(account_sid, auth_token)
+                phone_number = Profile.phone_number
+                message = client.messages \
+                    .create(
+                         body= prescription.medication_name + comments + datetime,
+                         from_='+12314621486',
+                         to = number
+                     )
+
+                print(message.sid)
 
         serializer.save()
 
