@@ -50,7 +50,7 @@ class PrescriptionPreview extends Component {
       return(
       <li class="list-group-item d-flex align-items-baseline">
         <p>{this.props.prescription.medication_name}</p>
-        <button onClick={() => this.setState({displayModal: true})} className="btn btn-link ml-auto" type="button">Record</button>
+        <button onClick={() => this.setState({displayModal: true})} className="btn btn-link ml-auto record-dose" type="button">Give Medication</button>
         <Modal show={this.state.displayModal} onHide={() => this.setState({displayModal: false})}>
           <Modal.Header closeButton>
             <Modal.Title>{this.props.prescription.medication_name.toUpperCase()}</Modal.Title>
@@ -76,8 +76,8 @@ class PrescriptionPreview extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-        {this.props.isAdmin && <Link className="newmed nav-link" to={`/prescription/${this.props.prescription.id}`}>Edit</Link>}
-        {this.props.isAdmin && <button className="btn btn-link" type="button" onClick={() => this.props.removePrescription(this.props.prescription)}>Remove</button>}
+        {this.props.isAdmin && <Link className="newmed nav-link edit-prescription" to={`/prescription/${this.props.prescription.id}`}>Edit</Link>}
+        {this.props.isAdmin && <button className="btn btn-link remove-prescription" type="button" onClick={() => this.props.removePrescription(this.props.prescription)}>Remove</button>}
       </li>
     )
   }
@@ -228,14 +228,14 @@ class PatientDetail extends Component {
     const caregivers = this.state.caregivers?.map(caregiver => (
       <div key={caregiver.id}>
         <p>{caregiver.username}</p>
-        <button type="button" onClick={() => this.removeCaregiver(caregiver)}>Remove</button>
+        <button className="remove-caregiver"type="button" onClick={() => this.removeCaregiver(caregiver)}>Remove</button>
       </div>
     ))
 
     const availableCaregivers = this.state.availableCaregivers?.map(caregiver => (
       <div key={caregiver.id}>
         <p>{caregiver.username}</p>
-        <button type="button" onClick={() => this.addCaregiver(caregiver)}>Add</button>
+        <button className="add-caregiver" type="button" onClick={() => this.addCaregiver(caregiver)}>Add</button>
       </div>
     ))
 
@@ -251,10 +251,10 @@ class PatientDetail extends Component {
           :
           <React.Fragment>
           <div className="col-md-7 col-12">
-            <img src= {this.state.image} alt="" width="300" className="rounded-circle mb-3"/>
-            {isAdmin && <Link className="newmed nav-link" to={`/user/patients/edit/${id}`}>Edit Patient</Link>}
-            {isAdmin && <Link className="newmed nav-link" to={`/user/patients/${id}/prescriptions/add/`}>Add New Prescription</Link>}
-            <Link className="newmed nav-link" to={`/user/medicationHistory/${id}`}>View Prescription History</Link>
+            <img src= {this.state.image} alt="" width="200" className=" mb-3"/>
+            {isAdmin && <Link className="newmed nav-link edit-patient" to={`/user/patients/edit/${id}`}>Edit Patient</Link>}
+            {isAdmin && <Link className="newmed nav-link new-prescription" to={`/user/patients/${id}/prescriptions/add/`}>Add New Prescription</Link>}
+            <Link className="newmed nav-link medication-history" to={`/user/medicationHistory/${id}`}>View Prescription History</Link>
 
             <div className="table-responsive">
             <table className="table table-user-information">
@@ -429,54 +429,40 @@ class PatientDetail extends Component {
             </table>
             </div>
         </div>
-            <ul className="col-md-5 col-12 list-group list-group-flush">
-              {prescriptions}
-            </ul>
+        <div className="col-md-5 col-12">
+        <ul className="list-group list-group-flush">
+          <h3>Prescrptions</h3>
+          {prescriptions}
+        </ul>
 
-            <ul className="col-md-5 col-12 list-group list-group-flush">
+        <ul className="list-group list-group-flush">
+        <h3>Caregivers</h3>
 
+        <li class="list-group-item d-flex align-items-baseline caregiver-box">
 
-            <li class="list-group-item d-flex align-items-baseline">
+          {isAdmin && <button onClick={() => this.setState({displayModal: true})} className="btn btn-link ml-auto add-caregiver" type="button">Add Caregiver</button>}
+          <Modal show={this.state.displayModal} onHide={() => this.setState({displayModal: false})}>
+            <Modal.Header closeButton>
+              <Modal.Title>Search Caregivers Below</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {availableCaregivers}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => this.setState({displayModal: false})}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
-              <button onClick={() => this.setState({displayModal: true})} className="btn btn-link ml-auto" type="button">Add Caregiver</button>
-              <Modal show={this.state.displayModal} onHide={() => this.setState({displayModal: false})}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Search Caregivers Below</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  {availableCaregivers}
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={() => this.setState({displayModal: false})}>
-                    Close
-                  </Button>
-                </Modal.Footer>
-              </Modal>
+        </li>
 
-            </li>
-
-
-
-
-
-
-
-
+          {isAdmin && caregivers}
+        </ul>
+        </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-              {isAdmin && caregivers}
-            </ul>
           </React.Fragment>
           }
         </div>

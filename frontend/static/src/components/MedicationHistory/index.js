@@ -29,24 +29,33 @@ class MedicationHistory extends Component {
      }
      render(){
        let text = this.state.data.map(item =>{
-         return <div className="medhistory"><div className="history_box"><div>Prescription ID - {item.id}</div><div>Comments - {item.comments}</div> <div>Date/Time - {item.datetime}</div></div></div>;
+         return(
+           <tr>
+             <th scope="row">{item.id}</th>
+             <td>{item.comments}</td>
+             <td>{item.datetime}</td>
 
-
-       })
+           </tr>
+       )})
        return(
          <div>
-         <div className="top_bar">
-         <p className="pDtail">Medication History</p>
-         </div>
-         <div>
 
-         </div>
-         <div className= 'col-lg-12 col-xs-12 d-block w-100'>{text}</div>
-         <div className="bottom_bar ">
-         <Link className="pdtail_link" to={`/user/patients/${this.props.match.params.id}/`}>Return To Patient Detail</Link>
-         </div>
+         <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Prescription Id</th>
+                    <th scope="col">Comments</th>
+                    <th scope="col">Date/Time</th>
 
-         </div>
+                  </tr>
+                </thead>
+                <tbody>
+                  {text}
+
+                </tbody>
+              </table>
+          <Link className="pdtail_link" to={`/user/patients/${this.props.match.params.id}/`}>Return To Patient Detail</Link>
+        </div>
        )
      }
   }

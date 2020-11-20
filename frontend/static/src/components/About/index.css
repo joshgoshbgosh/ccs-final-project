@@ -5,7 +5,7 @@ body{
 .tanbox {
 background-color: #EFE6D4;
 height: 500px;
-opacity: 60%;
+
 
 }
 .undercard {
@@ -81,7 +81,7 @@ bottom: 640px;
 float:right;
 margin-right: 130px;
 transform: rotate(20deg);
-opacity: 80%;
+
 font-family: courier;
 
 

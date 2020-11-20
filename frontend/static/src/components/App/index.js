@@ -126,6 +126,7 @@ class App extends Component {
       <Header isLoggedIn={this.state.isLoggedIn} handleLogout={ this.handleLogout } />
 
       <div className="container">
+      
       <Switch>
 
           <Route path='/registration' render={(props) => <Registration {...props} isLoggedIn={this.state.isLoggedIn} handleRegistration={ this.handleRegistration } />} />

@@ -1,0 +1,34 @@
+.medication-history {
+  color: red;
+}
+.new-prescription {
+  color: red;
+}
+.edit-patient {
+  color: red;
+}
+.remove-caregiver {
+  color: red;
+  background-color: white;
+  border: none;
+  font-weight: bold;
+}
+.edit-prescription {
+  color: black;
+}
+.remove-prescription {
+  color: red;
+  font-weight: bold;
+}
+.add-caregiver {
+  color:blue;
+  font-weight: bold;
+
+}
+.record-dose {
+  color: blue;
+  font-weight: bold;
+}
+.list-group-flush {
+  justify-content: flex-end;
+}
