@@ -179,7 +179,7 @@ render() {
           <label htmlFor="image"><b>Image</b></label>
           <input type="file" className="form-control" placeholder="Upload image" name="image" id="image" onChange={this.handleImage} required/>
           {this.state.image ? (
-          <img className="patient-form-img"src={this.state.preview} alt='preview' style={{width: "50%"}}/>
+          <img className="patient-form-img" src={this.state.preview || this.state.image} alt='preview' style={{width: "50%"}}/>
         ) : (
           null
         )}

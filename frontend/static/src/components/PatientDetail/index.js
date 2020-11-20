@@ -229,17 +229,17 @@ class PatientDetail extends Component {
     const caregivers = this.state.caregivers?.map(caregiver => (
 
       <div key={caregiver.id}>
-        <p>{caregiver.username}</p>
+        <p>{caregiver.username.toUpperCase()}</p>
         <button className="remove-caregiver"type="button" onClick={() => this.removeCaregiver(caregiver)}>Remove Caregiver</button>
       </div>
 
     ))
 
     const availableCaregivers = this.state.availableCaregivers?.map(caregiver => (
-      <div key={caregiver.id}>
-        <p>{caregiver.username}</p>
-        <button className="add-caregiver" type="button" onClick={() => this.addCaregiver(caregiver)}>Add</button>
-      </div>
+      <li key={caregiver.id} className="d-flex list-group-item align-items-baseline">
+        <p>{caregiver.username.toUpperCase()}</p>
+        <button className="add-caregiver ml-auto" type="button" onClick={() => this.addCaregiver(caregiver)}>ADD</button>
+      </li>
     ))
 
 
@@ -258,7 +258,7 @@ class PatientDetail extends Component {
             {isAdmin && <Link className="newmed nav-link edit-patient" to={`/user/patients/edit/${id}`}>Edit Patient</Link>}
             {isAdmin && <Link className="newmed nav-link new-prescription" to={`/user/patients/${id}/prescriptions/add/`}>Add New Prescription</Link>}
             <Link className="newmed nav-link medication-history" to={`/user/medicationHistory/${id}`}>View Prescription History</Link>
-        
+
             <div className="table-responsive">
             <table className="table table-user-information">
                 <tbody>
@@ -449,7 +449,9 @@ class PatientDetail extends Component {
               <Modal.Title>Search Caregivers Below</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+            <ul className="list-group list-group-flush">
               {availableCaregivers}
+              </ul>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={() => this.setState({displayModal: false})}>
