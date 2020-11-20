@@ -40,9 +40,8 @@ render() {
     is an app designed from seeing the struggle of family members taking care of their loved ones.
      From hired help not being detailed enough, to family care takers not having the tools needed for the
      best care possible,  Glow is designed for simplicity, yet  high quality detailed effectiveness for
-     the caregiver. From detailed written and image documentation, to medication check offs and scheduling,
-     to finding the closest pharmacies or care facilities no matter where you are.  Glow is designed to
-     help equip and bring peace of mind to the everyday family caregiver.</p>
+     the caregiver. From detailed written documentation of scheduled medication, to alerts and notifications of scheduled medications.
+    Glow is designed tohelp equip and bring peace of mind to the everyday family caregiver.</p>
     </div>
       <h1 className="glowlogo d-none d-md-block">GLOW</h1>
 
