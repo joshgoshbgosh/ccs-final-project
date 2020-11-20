@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Moment from 'react-moment';
 
 
 
@@ -33,17 +34,19 @@ class MedicationHistory extends Component {
            <tr>
              <th scope="row">{item.id}</th>
              <td>{item.comments}</td>
-             <td>{item.datetime}</td>
+             <td><Moment format="YYYY-MMM-ddd HH:mm A">
+                {item.datetime}
+            </Moment></td>
 
            </tr>
        )})
        return(
          <div>
-
+         <h3>Medication History</h3>
          <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">Prescription Id</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Comments</th>
                     <th scope="col">Date/Time</th>
 

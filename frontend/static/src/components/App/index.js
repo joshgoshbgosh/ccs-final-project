@@ -12,7 +12,7 @@ import Footer from './../Footer';
 import Login from './../Login';
 import Registration from './../Registration';
 
-import Map from './../Map/MyGoogleMap';
+
 
 import PatientForm from './../PatientForm';
 import PatientList from './../PatientList';
@@ -126,7 +126,7 @@ class App extends Component {
       <Header isLoggedIn={this.state.isLoggedIn} handleLogout={ this.handleLogout } />
 
       <div className="container">
-      
+
       <Switch>
 
           <Route path='/registration' render={(props) => <Registration {...props} isLoggedIn={this.state.isLoggedIn} handleRegistration={ this.handleRegistration } />} />
@@ -142,7 +142,7 @@ class App extends Component {
           <PrivateRoute path='/user/patients' isLoggedIn={this.state.isLoggedIn} component={PatientList} />
           <PrivateRoute path='/user/medicationHistory/:id' isLoggedIn={this.state.isLoggedIn} component={MedicationHistory} />
           <PrivateRoute path='/user/caregivers/:id'isLoggedIn={this.state.isLoggedIn} component={Caregivers} />
-          <PrivateRoute path='/user/map'isLoggedIn={this.state.isLoggedIn} component={Map} />
+
           <Route path="/" component={About} exact />
         </Switch>
       </div>

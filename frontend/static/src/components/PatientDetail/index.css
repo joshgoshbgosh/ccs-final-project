@@ -1,17 +1,22 @@
 .medication-history {
-  color: red;
+  color: purple;
 }
 .new-prescription {
-  color: red;
+  color: purple;
 }
 .edit-patient {
-  color: red;
+  color: purple;
 }
 .remove-caregiver {
   color: red;
   background-color: white;
   border: none;
   font-weight: bold;
+  margin-left: 60%;
+  margin-top: -70px;
+  position: relative;
+  bottom: 40px;
+
 }
 .edit-prescription {
   color: black;
@@ -23,12 +28,23 @@
 .add-caregiver {
   color:blue;
   font-weight: bold;
+  background-color: white;
+  border:none;
 
 }
 .record-dose {
   color: blue;
   font-weight: bold;
+
 }
-.list-group-flush {
-  justify-content: flex-end;
+.patient-detail-img {
+  border:solid;
+  border-width: thin;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.carelist {
+  margin-top: 20px;
+}
+.prescription-detail {
+  color:purple;
 }

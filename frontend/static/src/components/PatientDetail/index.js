@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import { Button, Modal, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import './index.css';
+import Moment from 'react-moment';
 import PatientForm from './../PatientForm';
 class PrescriptionPreview extends Component {
   constructor(props) {
@@ -226,10 +227,12 @@ class PatientDetail extends Component {
     const id = this.props.match.params.id;
     const prescriptions = this.state.prescriptions?.map(prescription => <PrescriptionPreview key={prescription.id} prescription={prescription} removePrescription={this.removePrescription} editPrescription={this.editPrescription} isAdmin={isAdmin}/>);
     const caregivers = this.state.caregivers?.map(caregiver => (
+
       <div key={caregiver.id}>
         <p>{caregiver.username}</p>
-        <button className="remove-caregiver"type="button" onClick={() => this.removeCaregiver(caregiver)}>Remove</button>
+        <button className="remove-caregiver"type="button" onClick={() => this.removeCaregiver(caregiver)}>Remove Caregiver</button>
       </div>
+
     ))
 
     const availableCaregivers = this.state.availableCaregivers?.map(caregiver => (
@@ -251,11 +254,11 @@ class PatientDetail extends Component {
           :
           <React.Fragment>
           <div className="col-md-7 col-12">
-            <img src= {this.state.image} alt="" width="200" className=" mb-3"/>
+            <img src= {this.state.image} alt="" width="175" className="patient-detail-img mb-3"/>
             {isAdmin && <Link className="newmed nav-link edit-patient" to={`/user/patients/edit/${id}`}>Edit Patient</Link>}
             {isAdmin && <Link className="newmed nav-link new-prescription" to={`/user/patients/${id}/prescriptions/add/`}>Add New Prescription</Link>}
             <Link className="newmed nav-link medication-history" to={`/user/medicationHistory/${id}`}>View Prescription History</Link>
-
+        
             <div className="table-responsive">
             <table className="table table-user-information">
                 <tbody>
@@ -431,12 +434,12 @@ class PatientDetail extends Component {
         </div>
         <div className="col-md-5 col-12">
         <ul className="list-group list-group-flush">
-          <h3>Prescrptions</h3>
+          <h3>Prescriptions</h3>
           {prescriptions}
         </ul>
 
         <ul className="list-group list-group-flush">
-        <h3>Caregivers</h3>
+        <h3>Secondary Caregivers</h3>
 
         <li class="list-group-item d-flex align-items-baseline caregiver-box">
 
@@ -456,8 +459,9 @@ class PatientDetail extends Component {
           </Modal>
 
         </li>
-
+        <div className="carelist">
           {isAdmin && caregivers}
+          </div>
         </ul>
         </div>
 
