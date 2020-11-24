@@ -12,7 +12,7 @@ import Footer from './../Footer';
 import Login from './../Login';
 import Registration from './../Registration';
 
-
+import Map from './../Map/MyGoogleMap';
 
 import PatientForm from './../PatientForm';
 import PatientList from './../PatientList';
@@ -135,6 +135,8 @@ class App extends Component {
           <PrivateRoute path='/prescription/:id' isLoggedIn={this.state.isLoggedIn} component={PrescriptionEdit} />
           <PrivateRoute path='/user/patients/:id/prescriptions/add/' isLoggedIn={this.state.isLoggedIn} component={PrescriptionForm} />
           <PrivateRoute path='/user/prescriptiondetail/:id'isLoggedIn={this.state.isLoggedIn} component={PrescriptionDetail} />
+
+          <PrivateRoute path='/user/map' isLoggedIn={this.state.isLoggedIn} component={Map} />
 
           <PrivateRoute path='/user/patients/add' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />
           <PrivateRoute path='/user/patients/edit/:id/' isLoggedIn={this.state.isLoggedIn} component={PatientForm} />

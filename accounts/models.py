@@ -5,7 +5,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    pass
+    username = models.CharField(max_length=255)
+
 
 class Profile(models.Model):
     # https://docs.djangoproject.com/en/3.1/topics/db/examples/one_to_one/#one-to-one-relationships

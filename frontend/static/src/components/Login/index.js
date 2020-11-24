@@ -4,7 +4,7 @@ class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
     }
     this.handleInput = this.handleInput.bind(this);
@@ -21,8 +21,8 @@ class Login extends Component {
         <div className="container">
           <h1>Login to an Existing Account</h1>
           <div className="form-group">
-            <label htmlFor="username"><b>Username</b></label>
-            <input type="text" className="form-control" placeholder="Enter Username" name="username" id="username" value={this.state.username} onChange={this.handleInput} required/>
+            <label htmlFor="email"><b>Email</b></label>
+            <input type="text" className="form-control" placeholder="Enter Email" name="email" id="username" value={this.state.email} onChange={this.handleInput} required/>
           </div>
           <div className="form-group">
             <label htmlFor="password"><b>Password</b></label>

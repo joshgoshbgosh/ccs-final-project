@@ -3,8 +3,8 @@
 #patient-list .card {
   display:flex;
   flex-direction: row;
-  width: 300px;
-  height: 400px;
+  width: 250px;
+  height: 350px;
 
 
 
@@ -34,8 +34,8 @@
 }
 #patient-list .card-title {
   color: black;
-  margin-top:397px;
-  margin-left: -240px;
+  margin-top:347px;
+  margin-left: -226px;
   font-family: courier;
   font-weight: 500;
   text-decoration: underline;
@@ -63,9 +63,10 @@
 
 #patient-list  {
   background-color:#EFE6D4;
+  margin-top: 40px;
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 10%;
+  padding-left: 5%;
   padding-right: 10%;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -73,8 +74,8 @@
 
 #patient-list .photocard {
   background-color: white;
-  width: 370px;
-  height: 500px;
+  width: 320px;
+  height: 450px;
 
 
   /* margin-left: 70px; */
