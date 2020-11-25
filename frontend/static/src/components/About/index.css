@@ -10,58 +10,58 @@ margin-top: 40px;
 
 }
 .undercard {
-width: 350px;
-height: 250px;
+width: 300px;
+height: 200px;
 background-color: white;
 transform: rotate(20deg);
 position:relative;
-left:15%;
-top:40%;
+
+top:45%;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .underphoto {
-  width: 315px;
+  width: 275px;
   position:relative;
-  top: 8%;
-  left: 5%;
+  top: 4%;
+  left: 4%;
 
 
 }
 
 .middlecard {
-  width: 350px;
-  height: 250px;
+  width: 300px;
+  height: 200px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transform: rotate(155deg);
   position:relative;
-  bottom: 30%;
+  bottom: 20%;
   left:6%;
 }
 .middlephoto {
-  width: 315px;
+  width: 275px;
   position:relative;
   transform: rotate(180deg);
-  top:8%;
+  top:4%;
   left: 5%;
 }
 
 .topcard {
-  width: 350px;
-  height: 250px;
+  width: 300px;
+  height: 200px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transform: rotate(190deg);
   position:relative;
-  bottom: 92%;
-  left: 21%;
+  bottom: 65%;
+  
 }
 .topphoto {
-  width: 315px;
+  width: 275px;
   position:relative;
   transform: rotate(180deg);
-  top: 7%;
-  left:5%;
+  top: 4%;
+  left:4%;
 }
 
 .words {
