@@ -62,7 +62,7 @@ class Searchbox extends Component {
         <Wrapper>
         <GoogleMap
           defaultZoom={10}
-          defaultCenter={this.state.center}
+          defaultCenter={[34.840297899999996, -82.3981592]}
           bootstrapURLKeys={{
             key: process.env.REACT_APP_MAP_KEY,
             libraries: ['places', 'geometry'],
